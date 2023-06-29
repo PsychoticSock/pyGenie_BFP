@@ -1,0 +1,1 @@
+decompressed_path = "D:/AOE2Modding/sample_dats/decompressed/"
