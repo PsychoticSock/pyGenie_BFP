@@ -8,7 +8,7 @@ from binary_file_parser.types import FixedLenStr
 class FileHeader(BaseStruct):
 
     # @formatter:off
-    game_version: str               = Retriever(FixedLenStr[8],                   default=7.7)
+    game_version: str  = Retriever(FixedLenStr[8],  default=7.7)
 
     @classmethod
     def decompress(cls, bytes_: bytes) -> bytes:

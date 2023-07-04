@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from dat_file_locations import DatVersion
+from dat_file_locations import Dat
 
 from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import ByteStream, uint16, uint32
 
 from file_header import FileHeader
+from graphics import Graphics
 from player_colour import PlayerColour
 from sounds import Sounds
 from terrain_tables import TerrainTables
@@ -23,25 +24,22 @@ class DatStructure(BaseStruct):
         pass
 
     # @formatter:off
-    file_header: FileHeader                     = Retriever(FileHeader,                                                                                         default=FileHeader()) #, remaining_compressed=True)  # Need to remove this is BFP supports compression
+    file_header: FileHeader                 = Retriever(FileHeader,                                                 default=FileHeader()) #, remaining_compressed=True)  # Need to remove this is BFP supports compression
+    civ_count_swgb:                   int   = Retriever(uint16, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
+    unknown_swgb_01:                  int   = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
+    unknown_swgb_02:                  int   = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
+    blend_mode_count_swgb:            int   = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
+    blend_mode_count_max_swgb:        int   = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
+    terrain_restriction_count:        int   = Retriever(uint16,                                                     default=0, on_set=[set_terrain_restriction_count])
+    terrain_count:                    int   = Retriever(uint16,                                                     default=0)
+    float_ptr_terrain_tables:   list[int]   = Retriever(uint32,                                                     default=0)
+    terrain_pass_graphics_ptrs: list[int]   = Retriever(uint32, min_ver=Version(Dat.AOE2_AOK_1999.ver()),
+                                                                        max_ver=Version(Dat.AOE2_DE_LATEST.ver()),  default=0)  # This version information might be wrong but just a placeholder for now
+    terrain_tables:   list[TerrainTables]   = Retriever(TerrainTables,                                              default=TerrainTables(), repeat=0)
+    player_colour:           PlayerColour   = Retriever(PlayerColour,                                               default=PlayerColour())
+    sounds:                        Sounds   = Retriever(Sounds,                                                     default=Sounds())
+    graphics:                    Graphics   = Retriever(Graphics,                                                     default=Graphics())
 
-    civ_count_swgb:                   int       = Retriever(uint16, Version(DatVersion.SWGB.version_tuple()), Version(DatVersion.SWGB.version_tuple()),         default=0)
-    unknown_swgb_01:                  int       = Retriever(uint32, Version(DatVersion.SWGB.version_tuple()), Version(DatVersion.SWGB.version_tuple()))
-    unknown_swgb_02:                  int       = Retriever(uint32, Version(DatVersion.SWGB.version_tuple()), Version(DatVersion.SWGB.version_tuple()))
-
-    blend_mode_count_swgb:            int       = Retriever(uint32, Version(DatVersion.SWGB.version_tuple()), Version(DatVersion.SWGB.version_tuple()))
-    blend_mode_count_max_swgb:        int       = Retriever(uint32, Version(DatVersion.SWGB.version_tuple()), Version(DatVersion.SWGB.version_tuple()))
-
-    terrain_restriction_count:        int       = Retriever(uint16,                                                                                             default=0, on_set=[set_terrain_restriction_count])
-    terrain_count:                    int       = Retriever(uint16,                                                                                             default=0)  # on_set=[set_terrain_count])  # Probably not required
-
-    float_ptr_terrain_tables:   list[int]       = Retriever(uint32,                                                                                             default=0)
-    terrain_pass_graphics_ptrs: list[int]       = Retriever(uint32, min_ver=Version(DatVersion.AOE2_AOK_1999.version_tuple()),
-                                                              max_ver=Version(DatVersion.AOE2_DE_LATEST.version_tuple()),                                       default=0)  # This version information is wrong but just a placeholder for now
-
-    terrain_tables:   list[TerrainTables]       = Retriever(TerrainTables,                                                                                      default=TerrainTables(), repeat=0)
-    player_colour:           PlayerColour       = Retriever(PlayerColour,                                                                                       default=PlayerColour())
-    sounds:                        Sounds       = Retriever(Sounds,                                                                                             default=Sounds())
 
 
 

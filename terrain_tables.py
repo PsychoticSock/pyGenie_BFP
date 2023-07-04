@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from binary_file_parser import BaseStruct, Retriever, Version
 
+from dat_file_locations import Dat
 from terrain_pass_graphics import TerrainPassGraphics
 from terrain_restrictions import TerrainRestrictions
 
@@ -9,7 +10,7 @@ from terrain_restrictions import TerrainRestrictions
 class TerrainTables(BaseStruct):
 
     terrain_restrictions: int = Retriever(TerrainRestrictions, default=TerrainRestrictions())
-    terrain_pass_graphics: list[TerrainPassGraphics] = Retriever(TerrainPassGraphics, default=TerrainPassGraphics())
+    terrain_pass_graphics: list[TerrainPassGraphics] = Retriever(TerrainPassGraphics, min_ver=Version(Dat.AOE1DE.ver()), default=TerrainPassGraphics())
 
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
                  initialise_defaults: bool = True, **retriever_inits):
