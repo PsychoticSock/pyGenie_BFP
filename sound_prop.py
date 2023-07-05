@@ -21,10 +21,11 @@ class DE2SoundProp(BaseStruct):
 
 
 class SoundProp(BaseStruct):
-    sound_delay: int    = Retriever(int16,  default=0),
-    sound_id: int       = Retriever(int16,  default=0),
-
+    sound_delay: int    = Retriever(int16,  default=0)
+    sound_id: int       = Retriever(int16,  default=0)
 
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
                  initialise_defaults: bool = True, **retriever_inits):
         super().__init__(struct_ver, parent, idx, initialise_defaults, **retriever_inits)
+
+

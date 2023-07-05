@@ -9,6 +9,7 @@ from file_header import FileHeader
 from graphics import Graphics
 from player_colour import PlayerColour
 from sounds import Sounds
+from terraindata import TerrainData
 from terrain_tables import TerrainTables
 
 
@@ -38,8 +39,8 @@ class DatStructure(BaseStruct):
     terrain_tables:   list[TerrainTables]   = Retriever(TerrainTables,                                              default=TerrainTables(), repeat=0)
     player_colour:           PlayerColour   = Retriever(PlayerColour,                                               default=PlayerColour())
     sounds:                        Sounds   = Retriever(Sounds,                                                     default=Sounds())
-    graphics:                    Graphics   = Retriever(Graphics,                                                     default=Graphics())
-
+    graphics:                    Graphics   = Retriever(Graphics,                                                   default=Graphics())
+    terrains:                     TerrainData   = Retriever(TerrainData,                                                   default=TerrainData())
 
 
 

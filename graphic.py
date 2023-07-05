@@ -37,7 +37,7 @@ class GraphicDataSWGB(BaseStruct):
         super().__init__(struct_ver, parent, idx, initialise_defaults, **retriever_inits)
 
 
-class GraphicDataAOE1(BaseStruct):
+class GraphicDataAOE1_2(BaseStruct):
     graphic_internal_name: str                       = Retriever(FixedLenStr[21],                              default=0)
     graphic_sprite_name: str                         = Retriever(FixedLenStr[13],                              default=0)
     graphics_data_common: list[GraphicDataCommon] = Retriever(GraphicDataCommon, default=GraphicDataCommon())
