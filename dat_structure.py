@@ -55,7 +55,9 @@ class DatStructure(BaseStruct):
     ) -> Version:
         ver_str = stream.peek(8).decode('ascii')
         ver_str = ver_str.replace("VER ", '').rstrip('\x00')
-        return Version(tuple(map(int, ver_str.split("."))))
+        output_ver = Version(tuple(map(int, ver_str.split("."))))
+        output_ver = stream.check_if_needs_subversion(output_ver)
+        return output_ver
 
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, initialise_defaults=True, **retriever_inits):
         super().__init__(struct_ver, parent, initialise_defaults=initialise_defaults, **retriever_inits)
