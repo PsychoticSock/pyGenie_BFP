@@ -6,7 +6,7 @@ from dat_structure import DatStructure
 from decompress_sample import DecompressSample
 
 
-current_dat = Dat.AOE2_CONQUERORS_2000
+current_dat = Dat.AOE2_HD_DLC
 
 DecompressSample(current_dat)  # Make decompresed data available for hex editor
 
