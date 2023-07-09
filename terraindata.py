@@ -47,9 +47,9 @@ class TerrainData(BaseStruct):
 
     _                               = Retriever(Bytes[0], default=b"", on_set=[set_repeat_terrain])
     terrains: Terrain               = Retriever(Terrain, default=Terrain())
-    terrain_border: TerrainBorder   = Retriever(TerrainBorder, min_ver=Dat.AOE2_AOK_1999.ver(), max_ver=Dat.SWGB_EXPANSION.ver(), default=TerrainBorder(), repeat=16)
+    terrain_border: TerrainBorder   = Retriever(TerrainBorder, min_ver=Dat.AOE1_1997.ver(), max_ver=Dat.SWGB_EXPANSION.ver(), default=TerrainBorder(), repeat=16)
 
-    map_row_offset: int             = Retriever(int32, min_ver=Dat.AOE2_AOK_1999.ver(), max_ver=Dat.SWGB_EXPANSION.ver(), default=0)
+    map_row_offset: int             = Retriever(int32, min_ver=Dat.AOE1_1997.ver(), max_ver=Dat.SWGB_EXPANSION.ver(), default=0)
 
     map_min_x: int                  = Retriever(float32,  min_ver=Dat.AOE2_AOK_1999.ver(), default=0)
     map_min_y: int                  = Retriever(float32,  min_ver=Dat.AOE2_AOK_1999.ver(), default=0)

@@ -46,16 +46,18 @@ class Terrain(BaseStruct):
     blend_priority_de_AOE1DE: int           = Retriever(int16, min_ver=Dat.AOE1DE.ver(),         max_ver=Dat.AOE1DE.ver(),                  default=0)
     blend_type_de_AOE1DE: int               = Retriever(int16, min_ver=Dat.AOE1DE.ver(),         max_ver=Dat.AOE1DE.ver(),                  default=0)
     internal_name_len_debug_AOE1DE: int  = Retriever(uint16, min_ver=Dat.AOE1DE.ver(),         max_ver=Dat.AOE1DE.ver(),                 default=0)
-    internal_name_AOE1DE: int            = Retriever(str16,  min_ver=Dat.AOE1DE.ver(),         max_ver=Dat.AOE1DE.ver(),                 default=0)
+    internal_name_AOE1DE: str            = Retriever(str16,  min_ver=Dat.AOE1DE.ver(),         max_ver=Dat.AOE1DE.ver(),                 default=0)
     filename_len_debug_AOE1DE: int       = Retriever(uint16, min_ver=Dat.AOE1DE.ver(),         max_ver=Dat.AOE1DE.ver(),                 default=0)
-    filename_AOE1DE: int                 = Retriever(str16,  min_ver=Dat.AOE1DE.ver(),         max_ver=Dat.AOE1DE.ver(),                 default=0)
+    filename_AOE1DE: str                 = Retriever(str16,  min_ver=Dat.AOE1DE.ver(),         max_ver=Dat.AOE1DE.ver(),                 default=0)
     internal_name_len_debug_AOE2DE: int  = Retriever(uint16, min_ver=Dat.AOE2_DE_START.ver(),  max_ver=Dat.AOE2_DE_LATEST.ver(),         default=0)
-    internal_name_AOE2DE: int            = Retriever(str16,  min_ver=Dat.AOE2_DE_START.ver(),  max_ver=Dat.AOE2_DE_LATEST.ver(),         default=0)
+    internal_name_AOE2DE: str            = Retriever(str16,  min_ver=Dat.AOE2_DE_START.ver(),  max_ver=Dat.AOE2_DE_LATEST.ver(),         default=0)
     filename_len_debug_AOE2DE: int       = Retriever(uint16, min_ver=Dat.AOE2_DE_START.ver(),  max_ver=Dat.AOE2_DE_LATEST.ver(),         default=0)
-    filename_AOE2DE: int                 = Retriever(str16,  min_ver=Dat.AOE2_DE_START.ver(),  max_ver=Dat.AOE2_DE_LATEST.ver(),         default=0)
+    filename_AOE2DE: str                 = Retriever(str16,  min_ver=Dat.AOE2_DE_START.ver(),  max_ver=Dat.AOE2_DE_LATEST.ver(),         default=0)
 
-    internal_name_AOE1_HD: str           = Retriever(FixedLenStr[13], min_ver=Dat.AOE1_1997.ver(), max_ver=Dat.AOE2_HD_DLC.ver(),        default=0)
-    filename_AOE1_HD: str                = Retriever(FixedLenStr[13], min_ver=Dat.AOE1_1997.ver(), max_ver=Dat.AOE2_HD_DLC.ver(),        default=0)
+    internal_name_AOE1: str           = Retriever(FixedLenStr[13], min_ver=Dat.AOE1_1997.ver(), max_ver=Dat.AOE1DE_CLASSIC.ver(),        default=0)
+    filename_AOE1: str                = Retriever(FixedLenStr[13], min_ver=Dat.AOE1_1997.ver(), max_ver=Dat.AOE1DE_CLASSIC.ver(),        default=0)
+    internal_name_HD: str               = Retriever(FixedLenStr[13], min_ver=Dat.AOE2_AOK_1999.ver(), max_ver=Dat.AOE2_HD_DLC.ver(), default=0)
+    filename_HD: str                    = Retriever(FixedLenStr[13], min_ver=Dat.AOE2_AOK_1999.ver(), max_ver=Dat.AOE2_HD_DLC.ver(),  default=0)
     internal_name_SWGB: str           = Retriever(FixedLenStr[17], min_ver=Dat.SWGB.ver(), max_ver=Dat.SWGB_EXPANSION.ver(),          default=0)
     filename_SWGB: str                = Retriever(FixedLenStr[17], min_ver=Dat.SWGB.ver(), max_ver=Dat.SWGB_EXPANSION.ver(),          default=0)
     internal_name_AOE2DE: str           = Retriever(str16, min_ver=Dat.AOE2_DE_START.ver(), max_ver=Dat.AOE2_DE_LATEST.ver(), default=0)
@@ -90,10 +92,10 @@ class Terrain(BaseStruct):
     terrain_to_draw0: int           = Retriever(int16, default=0)
     terrain_to_draw1: int           = Retriever(int16, default=0)
 
-    terrain_unit_masked_density: list[int] = Retriever(int16, min_ver=Dat.AOE2_DE_START.ver(), repeat=30, default=[])
-
     _                               = Retriever(Bytes[0], default=b"", on_set=[set_repeat_terrain])
-    borders: list[int]              = Retriever(int16, min_ver=Dat.AOE2_AOK_1999.ver(), max_ver=Dat.SWGB_EXPANSION.ver(), default=0, repeat=0)
+    borders: list[int]              = Retriever(int16, min_ver=Dat.AOE1_1997.ver(), max_ver=Dat.SWGB_EXPANSION.ver(), default=0, repeat=0)
+
+    terrain_unit_masked_density: list[int] = Retriever(int16, min_ver=Dat.AOE2_DE_START.ver(), repeat=30, default=[])
 
     terrain_unit_id: int             = Retriever(int16, default=0, repeat=30)
     terrain_unit_density: int        = Retriever(int16, default=0, repeat=30)
