@@ -3,9 +3,9 @@ from __future__ import annotations
 from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import  int8, uint8, int32, int16, uint16, uint32, Bytes, float32
 
-from terrain_borders import TerrainBorder
-from tilesize import TileSize
-from terrain import Terrain
+from sections.borders.borders import TerrainBorder
+from sections.terrain.tilesize import TileSize
+from sections.terrain.terrain import Terrain
 
 from dat_file_locations import Dat
 
@@ -90,7 +90,7 @@ class TerrainData(BaseStruct):
     terrain_blob0_aoe1: int         = Retriever(uint8,  max_ver=Dat.AOE1DE.ver(),    repeat=2, default=0)
     terrain_blob1_aoe1: int         = Retriever(uint32, max_ver=Dat.AOE1DE.ver(),   repeat=5, default=0)
 
-    terrain_blob0: int              = Retriever(uint8, min_ver=Dat.AOK_1999_TEST.ver(), max_ver=Dat.AOE2_HD_DLC.ver(), repeat=21, default=0)
-    terrain_blob1: int              = Retriever(uint32, min_ver=Dat.AOK_1999_TEST.ver(), max_ver=Dat.AOE2_HD_DLC.ver(), repeat=157, default=0)
+    terrain_blob0: int              = Retriever(uint8, min_ver=Dat.AOE2_AOK_1999.ver(), max_ver=Dat.AOE2_HD_DLC.ver(), repeat=21, default=0)
+    terrain_blob1: int              = Retriever(uint32, min_ver=Dat.AOE2_AOK_1999.ver(), max_ver=Dat.AOE2_HD_DLC.ver(), repeat=157, default=0)
 
 

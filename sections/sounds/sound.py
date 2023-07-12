@@ -4,7 +4,7 @@ from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import int32, int16, uint16, uint8, FixedLenStr
 
 from dat_file_locations import Dat
-from sound_item import SoundItem
+from sections.sounds.sound_item import SoundItem
 
 
 class Sound(BaseStruct):

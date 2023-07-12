@@ -3,7 +3,7 @@ from __future__ import annotations
 from binary_file_parser import BaseStruct, Retriever, Version
 
 from dat_file_locations import Dat
-from sound_prop import DE2SoundProp, SoundProp
+from sections.sounds.sound_prop import DE2SoundProp, SoundProp
 
 
 class GraphicAttackSounds(BaseStruct):

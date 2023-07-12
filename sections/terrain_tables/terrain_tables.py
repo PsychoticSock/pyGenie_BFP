@@ -3,8 +3,8 @@ from __future__ import annotations
 from binary_file_parser import BaseStruct, Retriever, Version
 
 from dat_file_locations import Dat
-from terrain_pass_graphics import TerrainPassGraphics
-from terrain_restrictions import TerrainRestrictions
+from sections.terrain_tables.terrain_pass_graphics import TerrainPassGraphics
+from sections.terrain_tables.terrain_restrictions import TerrainRestrictions
 
 
 class TerrainTables(BaseStruct):

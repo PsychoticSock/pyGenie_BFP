@@ -5,7 +5,7 @@ from binary_file_parser.types import uint16, uint32
 
 
 from dat_file_locations import Dat
-from graphic import GraphicDataDE, GraphicDataSWGB, GraphicDataAOE1_2, GraphicDataCommon
+from sections.graphics.graphic import GraphicDataDE, GraphicDataSWGB, GraphicDataAOE1_2, GraphicDataCommon
 
 debug_repeat = 368
 class Graphics(BaseStruct):

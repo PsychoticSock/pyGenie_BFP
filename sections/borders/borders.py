@@ -5,8 +5,8 @@ from binary_file_parser import BaseStruct, Retriever
 
 from binary_file_parser.types import uint8, int8, int16, int32, FixedLenStr
 
-from frame_data import FrameData
-from terrain_animation import TerrainAnimation
+from sections.terrain.frame_data import FrameData
+from sections.terrain.terrain_animation import TerrainAnimation
 
 
 class TerrainBorder(BaseStruct):

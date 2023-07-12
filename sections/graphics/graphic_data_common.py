@@ -4,8 +4,8 @@ from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import uint32, int8, uint8, int16, uint16, float32
 
 from dat_file_locations import Dat
-from graphic_attack_sounds import GraphicAttackSounds
-from graphic_deltas import GraphicDeltas
+from sections.graphics.graphic_attack_sounds import GraphicAttackSounds
+from sections.graphics.graphic_deltas import GraphicDeltas
 
 
 class GraphicDataCommon(BaseStruct):

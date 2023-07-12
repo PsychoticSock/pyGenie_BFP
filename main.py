@@ -1,17 +1,25 @@
-from binary_file_parser import Version
-
 from dat_file_locations import Dat
-from dat_fingerprints import HD_BASE_TERRAIN_FINGERPRINT, AOK_TERRAIN_FINGERPRINT, DE_LATEST_TERRAIN_FINGERPRINT, HD_DLC_TERRAIN_FINGERPRINT
 from dat_structure import DatStructure
 from decompress_sample import DecompressSample
 
 
-current_dat = Dat.AOE2_DE_LATEST
+current_dat = Dat.SWGB
+batch = False
 
-DecompressSample(current_dat)  # Make decompresed data available for hex editor
+if batch:
+    for dat in Dat:
+        print(dat.name)
+        current_dat = dat
+        DecompressSample(current_dat)  # Make decompresed data available for hex editor
 
 
-datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)
+        datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)
 
-print(datfile.terrains)
-print(datfile.struct_ver)
+else:
+    DecompressSample(current_dat)  # Make decompresed data available for hex editor
+
+    datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)
+
+print(datfile.civ_count)
+print(datfile.civ)
+print(datfile.unit_headers)

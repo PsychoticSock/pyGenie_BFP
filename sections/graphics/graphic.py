@@ -4,7 +4,7 @@ from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import int8, uint8, uint16, FixedLenStr, str16, uint32, int16, float32
 
 from dat_file_locations import Dat
-from graphic_data_common import GraphicDataCommon
+from sections.graphics.graphic_data_common import GraphicDataCommon
 
 
 class GraphicDataDE(BaseStruct):
