@@ -25,6 +25,23 @@ class DatStructure(BaseStruct):
         Retriever.set_repeat(DatStructure.terrain_pass_graphics_ptrs, instance, instance.terrain_restriction_count)
         Retriever.set_repeat(DatStructure.terrain_tables, instance, instance.terrain_restriction_count)
 
+    @staticmethod
+    def check_AOC_subversion(_, instance: DatStructure):
+        current_version = (instance.struct_ver)
+        if(5,7)<=instance.struct_ver<(5,8):
+            if instance.maps.random_map_ptr == 237568256:
+                if(sum(instance.float_ptr_terrain_tables) < 1000):
+                    # AOE2 HD (No expansions)
+                    current_version = (5,7,2,3)
+                else:
+                    #print("AOC_10c")
+                    # AOE2: The Conquerors 1.0c
+                    current_version = (5, 7, 2, 2)
+            if instance.maps.random_map_ptr == 41867488:
+                # AOE2: The Conquerors 2000
+                current_version = (5, 7, 2, 1)
+        instance.struct_ver=current_version
+
     # @formatter:off
     file_header: FileHeader                 = Retriever(FileHeader,                                                 default=FileHeader()) #, remaining_compressed=True)  # Need to remove this is BFP supports compression
     civ_count_swgb: int                     = Retriever(uint16, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
@@ -43,7 +60,7 @@ class DatStructure(BaseStruct):
     graphics:  Graphics                     = Retriever(Graphics,                                                   default=Graphics())
     terrains:  TerrainData                  = Retriever(TerrainData,                                                default=TerrainData())
 
-    maps: Maps                              = Retriever(Maps,                                                       default=Maps())
+    maps: Maps                              = Retriever(Maps,                                                       default=Maps(), on_set=[check_AOC_subversion])
 
     effectbundles: list[EffectBundle]       = Retriever(Array32[EffectBundle],                                      default=[])
 
@@ -53,11 +70,8 @@ class DatStructure(BaseStruct):
                                                                                 Version(Dat.AOE2_DE_LATEST.ver()),  default=[])
 
     civ_count: int                          = Retriever(int16,                                                      default=0)
-    civ: Civ                                = Retriever(Civ, Version(Dat.AOE2_AOK_1999.ver()),
-                                                        Version(Dat.AOE2_DE_LATEST.ver()),  default=Civ())
-
-    #civs: list[Civ]                         = Retriever(Array32[Civ], Version(Dat.AOE2_AOK_1999.ver()),
-    #                                                    Version(Dat.AOE2_DE_LATEST.ver()),  default=[])
+    civ: Civ                                = Retriever(Civ, default=Civ())
+    #civs: list[Civ]                         = Retriever(Array32[Civ],                                               default=[])
 
 
     # @formatter:on

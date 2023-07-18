@@ -10,8 +10,6 @@ from sections.terrain.terrain_animation import TerrainAnimation
 
 
 class TerrainBorder(BaseStruct):
-
-
     enabled: int                        = Retriever(int8,               default=0)
     random: int                         = Retriever(int8,               default=0)
     internal_name: str                  = Retriever(FixedLenStr[13], default=0)

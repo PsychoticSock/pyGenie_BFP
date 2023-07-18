@@ -3,8 +3,8 @@ from dat_structure import DatStructure
 from decompress_sample import DecompressSample
 
 
-current_dat = Dat.SWGB
-batch = False
+current_dat = Dat.AOE1DE
+batch = True
 
 if batch:
     for dat in Dat:
@@ -14,12 +14,13 @@ if batch:
 
 
         datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)
+        print(datfile.civ)
 
 else:
     DecompressSample(current_dat)  # Make decompresed data available for hex editor
 
     datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)
 
-print(datfile.civ_count)
-print(datfile.civ)
-print(datfile.unit_headers)
+#print(datfile.civ.unit_data)
+print(datfile)
+print(datfile.struct_ver)

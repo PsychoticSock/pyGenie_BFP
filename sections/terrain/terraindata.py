@@ -12,27 +12,34 @@ from dat_file_locations import Dat
 class TerrainData(BaseStruct):
     def set_repeat_terrain(_, instance: Terrain):
         hardcoded_terrain_count = 0
-        if instance.struct_ver == Dat.SWGB.ver():
-            print("SWGB: 55 terrains")
-            hardcoded_terrain_count = Dat.SWGB.terrain_count()
-        if instance.struct_ver >= Dat.AOE2_DE_START.ver():
-            print("AOE2DE: 200 terrains")
-            hardcoded_terrain_count = Dat.AOE2_DE_START.terrain_count()
-        if instance.struct_ver == Dat.AOE1DE.ver():
-            hardcoded_terrain_count = Dat.AOE1DE.terrain_count()
-            print(f"AOE1DE: {hardcoded_terrain_count} terrains")
-        if instance.struct_ver == Dat.AOE2_AOK_1999.ver():
-            hardcoded_terrain_count = Dat.AOE2_AOK_1999.terrain_count()
-            print(f"AOK: {hardcoded_terrain_count} terrains")
-        if instance.struct_ver == Dat.AOE2_HD_BASE.ver():
-            hardcoded_terrain_count = Dat.AOE2_HD_BASE.terrain_count()
-            print(f"AOE2 HD no expansions: {hardcoded_terrain_count} terrains")
-        if instance.struct_ver == Dat.AOE2_HD_DLC.ver():
-            hardcoded_terrain_count = Dat.AOE2_HD_DLC.terrain_count()
-            print(f"AOE2 HD with DLC: {hardcoded_terrain_count} terrains")
-        if instance.struct_ver == Dat.AOE1_1997.ver():
-            hardcoded_terrain_count = Dat.AOE1_1997.terrain_count()
-            print(f"AOE1: {hardcoded_terrain_count} terrains")
+        if instance.struct_ver > (0,):
+            if instance.struct_ver == Dat.SWGB.ver():
+                print("SWGB: 55 terrains")
+                hardcoded_terrain_count = Dat.SWGB.terrain_count()
+            if instance.struct_ver >= Dat.AOE2_DE_START.ver():
+                print("AOE2DE: 200 terrains")
+                hardcoded_terrain_count = Dat.AOE2_DE_START.terrain_count()
+            if instance.struct_ver == Dat.AOE1DE.ver():
+                hardcoded_terrain_count = Dat.AOE1DE.terrain_count()
+                print(f"AOE1DE: {hardcoded_terrain_count} terrains")
+            if instance.struct_ver == Dat.AOE2_AOK_1999.ver():
+                hardcoded_terrain_count = Dat.AOE2_AOK_1999.terrain_count()
+                print(f"AOK: {hardcoded_terrain_count} terrains")
+            if instance.struct_ver == Dat.AOE2_CONQUERORS_2000.ver()[:-1]:
+                hardcoded_terrain_count = Dat.AOE2_CONQUERORS_2000.terrain_count()
+                print(f"AOC_2000: {hardcoded_terrain_count} terrains")
+            if instance.struct_ver == Dat.AOE2_CONQUERORS_10C.ver()[:-1]:
+                hardcoded_terrain_count = Dat.AOE2_CONQUERORS_10C.terrain_count()
+                print(f"AOC_2000: {hardcoded_terrain_count} terrains")
+            if instance.struct_ver == Dat.AOE2_HD_BASE.ver():
+                hardcoded_terrain_count = Dat.AOE2_HD_BASE.terrain_count()
+                print(f"AOE2 HD no expansions: {hardcoded_terrain_count} terrains")
+            if instance.struct_ver == Dat.AOE2_HD_DLC.ver():
+                hardcoded_terrain_count = Dat.AOE2_HD_DLC.terrain_count()
+                print(f"AOE2 HD with DLC: {hardcoded_terrain_count} terrains")
+            if instance.struct_ver == Dat.AOE1_1997.ver():
+                hardcoded_terrain_count = Dat.AOE1_1997.terrain_count()
+                print(f"AOE1: {hardcoded_terrain_count} terrains")
 
         Retriever.set_repeat(TerrainData.terrains, instance, hardcoded_terrain_count)
 

@@ -22,6 +22,10 @@ class Terrain(BaseStruct):
             #print(f"AOE1DE: {hardcoded_terrain_count} terrains")
         if instance.struct_ver == Dat.AOE2_AOK_1999.ver():
             hardcoded_terrain_count = Dat.AOE2_AOK_1999.terrain_count()
+        if instance.struct_ver == Dat.AOE2_CONQUERORS_2000.ver()[:-1]:
+            hardcoded_terrain_count = Dat.AOE2_CONQUERORS_2000.terrain_count()
+        if instance.struct_ver == Dat.AOE2_CONQUERORS_10C.ver()[:-1]:
+            hardcoded_terrain_count = Dat.AOE2_CONQUERORS_10C.terrain_count()
             #print(f"AOK: {hardcoded_terrain_count} terrains")
         if instance.struct_ver == Dat.AOE2_HD_BASE.ver():
             hardcoded_terrain_count = Dat.AOE2_HD_BASE.terrain_count()
