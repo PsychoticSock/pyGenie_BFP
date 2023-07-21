@@ -130,7 +130,7 @@ class Type10(BaseStruct):
     selection_sound_id:  int       = Retriever(int16,                                                                         default=0)
     dying_sound_id: int            = Retriever(int16,                                                                         default=0)
 
-    wwise_creation_sound_id: int   = Retriever(uint32,  Version(Dat.AOE2_DE_START.ver()),  Version(Dat.AOE2_DE_LATEST.ver()), default=0)
+    wwise_train_sound_id: int   = Retriever(uint32,  Version(Dat.AOE2_DE_START.ver()),  Version(Dat.AOE2_DE_LATEST.ver()), default=0) #wwise_creation_sound_id
     wwise_damage_sound_id: int     = Retriever(uint32,  Version(Dat.AOE2_DE_START.ver()),  Version(Dat.AOE2_DE_LATEST.ver()), default=0)
     wwise_selection_sound_id: int  = Retriever(uint32,  Version(Dat.AOE2_DE_START.ver()),  Version(Dat.AOE2_DE_LATEST.ver()), default=0)
     wwise_dying_sound_id: int      = Retriever(uint32,  Version(Dat.AOE2_DE_START.ver()),  Version(Dat.AOE2_DE_LATEST.ver()), default=0)

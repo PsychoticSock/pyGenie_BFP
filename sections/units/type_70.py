@@ -9,8 +9,6 @@ from sections.units.unit_command import UnitCommand
 
 
 class Type70(BaseStruct):
-    unknown_4_bytes: bytes                   = Retriever(Bytes[4], Version(Dat.AOE2_DE_START.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
-
     resource_cost: list[ResourceCost] = Retriever(ResourceCost, repeat=3, default=ResourceCost())
     creation_time: int              = Retriever(int16, default=0)
     train_location_i: int           = Retriever(int16, default=0)

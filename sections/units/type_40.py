@@ -22,8 +22,8 @@ class Type40(BaseStruct):
     stop_sound_id: int                 = Retriever(int16, default=0)
 
 
-    wwise_command_sound_id: int        = Retriever(uint32,  Version(Dat.AOE2_DE_START.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
-    wwise_stop_sound_id: int           = Retriever(uint32, Version(Dat.AOE2_DE_START.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
+    wwise_attack_sound_id: int        = Retriever(uint32,  Version(Dat.AOE2_DE_START.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0) # wwise_command_sound_id
+    wwise_move_sound_id: int           = Retriever(uint32, Version(Dat.AOE2_DE_START.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0) # wwise_stop_sound_id
 
     run_pattern: int                   = Retriever(int8, default=0)
 

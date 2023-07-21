@@ -3,7 +3,7 @@ from __future__ import annotations
 from dat_file_locations import Dat
 
 from binary_file_parser import BaseStruct, Retriever, Version
-from binary_file_parser.types import ByteStream, int16, uint16, uint32, Array16, Array32
+from binary_file_parser.types import ByteStream, int8, uint16, uint32, Array16, Array32, Bytes
 
 from sections.civs.civ import Civ
 from sections.effects.effect_bundle import EffectBundle
@@ -12,6 +12,8 @@ from sections.graphics.graphics import Graphics
 from sections.map.maps import Maps
 from sections.player_color.player_colour import PlayerColour
 from sections.sounds.sounds import Sounds
+from sections.tech.tech import Tech
+from sections.tech_trees.tech_trees import TechTrees
 from sections.terrain.terraindata import TerrainData
 from sections.terrain_tables.terrain_tables import TerrainTables
 from sections.units.unit_header import UnitHeader
@@ -34,7 +36,7 @@ class DatStructure(BaseStruct):
                     # AOE2 HD (No expansions)
                     current_version = (5,7,2,3)
                 else:
-                    #print("AOC_10c")
+                    # print("AOC_10c")
                     # AOE2: The Conquerors 1.0c
                     current_version = (5, 7, 2, 2)
             if instance.maps.random_map_ptr == 41867488:
@@ -44,11 +46,11 @@ class DatStructure(BaseStruct):
 
     # @formatter:off
     file_header: FileHeader                 = Retriever(FileHeader,                                                 default=FileHeader()) #, remaining_compressed=True)  # Need to remove this is BFP supports compression
-    civ_count_swgb: int                     = Retriever(uint16, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
-    unknown_swgb_01: int                    = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
-    unknown_swgb_02: int                    = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
-    blend_mode_count_swgb: int              = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
-    blend_mode_count_max_swgb: int          = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB.ver()),   default=0)
+    civ_count_swgb: int                     = Retriever(uint16, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
+    unknown_swgb_01: int                    = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
+    unknown_swgb_02: int                    = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
+    blend_mode_count_swgb: int              = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
+    blend_mode_count_max_swgb: int          = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
     terrain_restriction_count: int          = Retriever(uint16,                                                     default=0, on_set=[set_terrain_restriction_count])
     terrain_count: int                      = Retriever(uint16,                                                     default=0)
     float_ptr_terrain_tables:   list[int]   = Retriever(uint32,                                                     default=0)
@@ -69,10 +71,20 @@ class DatStructure(BaseStruct):
     unit_headers: list[UnitHeader]          = Retriever(Array32[UnitHeader], Version(Dat.AOE2_AOK_1999.ver()),
                                                                                 Version(Dat.AOE2_DE_LATEST.ver()),  default=[])
 
-    civ_count: int                          = Retriever(int16,                                                      default=0)
-    civ: Civ                                = Retriever(Civ, default=Civ())
-    #civs: list[Civ]                         = Retriever(Array32[Civ],                                               default=[])
+    #civ_count: int                          = Retriever(int16,                                                      default=0) # For testing purposes
+    #civ: Civ                                = Retriever(Civ, default=Civ(), repeat=1)                                          # For testing purposes
+    civs: list[Civ]                         = Retriever(Array16[Civ],                                               default=[])
 
+    unknown_swgb_03: int                    = Retriever(int8, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
+
+    #tech_count: int                         = Retriever(uint16,                                                     default=0)
+    #techs: Tech                             = Retriever(Tech,                                                       default=Tech(), repeat=10)
+    techs: list[Tech]                       = Retriever(Array16[Tech], default=Tech())
+
+    unknown_swgb_4: int                    = Retriever(int8, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
+
+    tech_trees: TechTrees                   = Retriever(TechTrees,                                                         default=TechTrees())
+    last_bytes: int                    = Retriever(Bytes[1],   default=0)
 
     # @formatter:on
 

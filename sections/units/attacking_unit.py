@@ -44,6 +44,7 @@ class AttackingUnit(BaseStruct):
     attack_displayed: int               = Retriever(int16, default=0)
     range_displayed: float              = Retriever(float32, default=0)
     reload_time_displayed: float        = Retriever(float32, default=0)
+    blast_damage: float                 = Retriever(float32, Version(Dat.AOE2_DE_LATEST.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0) # This will need changing later - was added recently
 
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
                  initialise_defaults: bool = True, **retriever_inits):
