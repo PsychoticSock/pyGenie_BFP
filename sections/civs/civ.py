@@ -17,8 +17,6 @@ class Civ(BaseStruct):
             print(f"{instance.civ_name} civ has {len([x for x in instance.unit_offsets if x > 0])} units")
             Retriever.set_repeat(Civ.unit_data , instance, len([x for x in instance.unit_offsets if x > 0]))#
 
-
-
     player_type: int              = Retriever(int8,                                                                                       default=0)
     name_len_debug_1: int         = Retriever(uint16,           Version(Dat.AOE1DE.ver()),            Version(Dat.AOE1DE.ver()),          default=0)
     name_len_debug_2: int         = Retriever(uint16,           Version(Dat.AOE2_DE_START.ver()),     Version(Dat.AOE2_DE_LATEST.ver()),  default=0)
@@ -28,7 +26,7 @@ class Civ(BaseStruct):
     civ_name_3: str               = Retriever(FixedLenStr[20],  Version(Dat.AOE1_1997.ver()),         Version(Dat.AOE1DE_ORIGINAL.ver()), default=0)
     civ_name_4: str               = Retriever(FixedLenStr[20],  Version(Dat.AOE2_AOK_1999.ver()),     Version(Dat.SWGB_EXPANSION.ver()),  default=0)
 
-    civ_name: str              = RetrieverCombiner([civ_name_1, civ_name_2, civ_name_3, civ_name_4])
+    civ_name: str                 = RetrieverCombiner([civ_name_1, civ_name_2, civ_name_3, civ_name_4])
 
     resources_count: int          = Retriever(uint16,                                                                                     default=0, on_set=[set_resources_count])
     tech_tree_id: int             = Retriever(int16,                                                                                      default=0)
@@ -41,8 +39,10 @@ class Civ(BaseStruct):
     resources: list[float]        = Retriever(float32,                                                                                    default=0)
 
     icon_set: int                 = Retriever(uint8,                                                                                       default=0)
-    unit_offsets: list[int]       = Retriever(Array16[int32],                                                                             default=[], on_set=[set_unit_data_repeat])   # If an entry is    b"\00\00\00\00" then a unit is non-existent for that civ,
-                                                                                                                                                        # if present it is  b"\01\00\00\00"
+    unit_offsets: list[int]       = Retriever(Array16[int32],                                                                             default=[], on_set=[set_unit_data_repeat])
+    # If an entry is    b"\00\00\00\00" then a unit is non-existent for that civ,
+    # if present it is  b"\01\00\00\00"
+
     unit_data: list[UnitData]     = Retriever(UnitData, default=UnitData())
 
 

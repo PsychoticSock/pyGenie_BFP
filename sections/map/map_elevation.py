@@ -3,6 +3,7 @@ from __future__ import annotations
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int32
 
+
 class MapElevation(BaseStruct):
     proportion: int         = Retriever(int32,  default=0)
     terrain: int            = Retriever(int32,  default=0)

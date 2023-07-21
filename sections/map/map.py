@@ -46,3 +46,7 @@ class MapDetails(BaseStruct):
     map_elevation_count: int        = Retriever(uint32,         default=0, on_set=[set_MapElevation_Count])
     map_elevation_ptr: int          = Retriever(int32,          default=0)
     map_elevations: MapElevation    = Retriever(MapElevation,   default=MapElevation(), repeat=0)
+
+    def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
+                 initialise_defaults: bool = True, **retriever_inits):
+        super().__init__(struct_ver, parent, idx, initialise_defaults, **retriever_inits)

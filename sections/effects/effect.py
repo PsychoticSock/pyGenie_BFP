@@ -3,6 +3,7 @@ from __future__ import annotations
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, int16, float32
 
+
 class Effect(BaseStruct):
     type_id: int    = Retriever(int8,    default=0)
     attr_a: int     = Retriever(int16,   default=0)

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from binary_file_parser import BaseStruct, Retriever, Version
-from binary_file_parser.types import int16, int32, uint32
+from binary_file_parser.types import int16, uint32
 
 
 class DE2SoundProp(BaseStruct):

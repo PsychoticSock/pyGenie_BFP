@@ -2,7 +2,6 @@ from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import float32
 
 
-
 class TerrainRestrictions(BaseStruct):
     accessible_dmgmultiplier: int   = Retriever(float32,    default=1)
 

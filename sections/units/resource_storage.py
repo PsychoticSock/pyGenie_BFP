@@ -3,6 +3,7 @@ from __future__ import annotations
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, int16, float32
 
+
 class ResourceStorage(BaseStruct):
     type: int       = Retriever(int16,      default=0)
     amount: int     = Retriever(float32,    default=0)

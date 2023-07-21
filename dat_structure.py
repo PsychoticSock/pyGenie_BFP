@@ -84,7 +84,6 @@ class DatStructure(BaseStruct):
     unknown_swgb_4: int                    = Retriever(int8, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
 
     tech_trees: TechTrees                   = Retriever(TechTrees, Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),  default=TechTrees())
-    #last_bytes: int                    = Retriever(Bytes[1],   default=0)
 
     # @formatter:on
 

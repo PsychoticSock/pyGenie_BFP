@@ -40,10 +40,10 @@ class Tech(BaseStruct):
     name_2: str                                     = Retriever(str16,  Version(Dat.AOE2_DE_START.ver()),   Version(Dat.AOE2_DE_LATEST.ver()),      default="")
 
 
-    repeatable: int                                 = Retriever(int8, Version(Dat.AOE2_DE_START.ver()),     Version(Dat.AOE2_DE_LATEST.ver()),      default=0)
+    repeatable: int                                 = Retriever(int8,   Version(Dat.AOE2_DE_START.ver()),     Version(Dat.AOE2_DE_LATEST.ver()),    default=0)
 
-    name_3: str                                     = Retriever(str16, Version(Dat.AOE1_1997.ver()),        Version(Dat.AOE1DE_ORIGINAL.ver()),     default="")
-    name_4: str                                     = Retriever(str16, Version(Dat.AOE2_AOK_1999.ver()),    Version(Dat.SWGB_EXPANSION.ver()),      default="")
+    name_3: str                                     = Retriever(str16,  Version(Dat.AOE1_1997.ver()),        Version(Dat.AOE1DE_ORIGINAL.ver()),    default="")
+    name_4: str                                     = Retriever(str16,  Version(Dat.AOE2_AOK_1999.ver()),    Version(Dat.SWGB_EXPANSION.ver()),     default="")
 
     name: str                                       = RetrieverCombiner([name_1, name_2, name_3, name_4])
 

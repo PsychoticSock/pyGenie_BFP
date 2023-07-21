@@ -3,6 +3,7 @@ from __future__ import annotations
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, int16, int32
 
+
 class MapUnit(BaseStruct):
     unit_id: int                    = Retriever(int32,  default=0)
     host_terrain: int               = Retriever(int32,  default=0)

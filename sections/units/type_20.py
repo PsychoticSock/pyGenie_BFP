@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from binary_file_parser import Retriever, BaseStruct, Version
-from binary_file_parser.types import float32, float16
+from binary_file_parser.types import float32
 
 
 class Type20(BaseStruct):

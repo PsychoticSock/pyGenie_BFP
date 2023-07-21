@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-
 from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import uint32
 
-from sections.map.map_info import MapInfo
 from sections.map.map import MapDetails
+from sections.map.map_info import MapInfo
+
 
 class Maps(BaseStruct):
     @staticmethod

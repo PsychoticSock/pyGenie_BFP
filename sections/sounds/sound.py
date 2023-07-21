@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from binary_file_parser import BaseStruct, Retriever, Version
-from binary_file_parser.types import int32, int16, uint16, uint8, FixedLenStr
+from binary_file_parser.types import int32, int16, uint16
 
 from dat_file_locations import Dat
 from sections.sounds.sound_item import SoundItem
@@ -14,7 +14,7 @@ class Sound(BaseStruct):
 
     sound_id: int                  = Retriever(int16,                                       default=0)
     play_delay: int                = Retriever(uint16,                                      default=0)
-    file_count: int                = Retriever(uint16,                                      default=0, on_set=[set_sound_item_count])
+    file_count: int                = Retriever(uint16,                                      default=0,          on_set=[set_sound_item_count])
     cache_time: int                = Retriever(int32,                                       default=300000)
     total_probability_AOE1DE: int  = Retriever(int16,   Version(Dat.AOE1DE.ver()),
                                                         Version(Dat.AOE1DE.ver()),          default= 100)

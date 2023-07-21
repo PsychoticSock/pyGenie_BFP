@@ -5,6 +5,7 @@ import zlib
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import FixedLenStr
 
+
 class FileHeader(BaseStruct):
 
     # @formatter:off

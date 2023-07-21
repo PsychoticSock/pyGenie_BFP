@@ -3,6 +3,7 @@ from __future__ import annotations
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int32, uint32
 
+
 class MapInfo(BaseStruct):
     map_id: int                         = Retriever(int32,  default=0)
     border_south_west: int              = Retriever(int32,  default=0)

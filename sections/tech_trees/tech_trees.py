@@ -49,7 +49,7 @@ class TechTrees(BaseStruct):
     age_connections: AgeTechTree                = Retriever(AgeTechTree,                                                                        default=AgeTechTree())
     building_connections: BuildingConnection    = Retriever(BuildingConnection,                                                                 default=BuildingConnection())
     unit_connections: UnitConnection            = Retriever(UnitConnection,                                                                     default=UnitConnection())
-    tech_connections: TechConnection        = Retriever(TechConnection, default=TechConnection())
+    tech_connections: TechConnection            = Retriever(TechConnection, default=TechConnection())
 
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
                  initialise_defaults: bool = True, **retriever_inits):

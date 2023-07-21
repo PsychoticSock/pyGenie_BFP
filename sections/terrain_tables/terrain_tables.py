@@ -9,8 +9,8 @@ from sections.terrain_tables.terrain_restrictions import TerrainRestrictions
 
 class TerrainTables(BaseStruct):
 
-    terrain_restrictions: int = Retriever(TerrainRestrictions, default=TerrainRestrictions())
-    terrain_pass_graphics: list[TerrainPassGraphics] = Retriever(TerrainPassGraphics, min_ver=Version(Dat.AOE1DE.ver()), default=TerrainPassGraphics())
+    terrain_restrictions: int                           = Retriever(TerrainRestrictions,                                    default=TerrainRestrictions())
+    terrain_pass_graphics: list[TerrainPassGraphics]    = Retriever(TerrainPassGraphics, min_ver=Version(Dat.AOE1DE.ver()), default=TerrainPassGraphics())
 
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
                  initialise_defaults: bool = True, **retriever_inits):

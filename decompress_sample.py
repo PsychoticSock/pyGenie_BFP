@@ -3,6 +3,7 @@ import zlib
 import local_paths
 from dat_file_locations import Dat
 
+
 def DecompressSample(datversion: Dat):
     with open(str(datversion.filepath()), 'rb') as f:
         content = f.read()

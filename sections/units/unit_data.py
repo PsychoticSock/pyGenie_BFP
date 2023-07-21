@@ -52,7 +52,7 @@ class UnitData(BaseStruct):
     type_60: int         = Retriever(Type60,        default=Type60(),        repeat=-1)
     attacking_type: int  = Retriever(AttackingUnit, default=AttackingUnit(), repeat=-1)
     type_70: int         = Retriever(Type70,        default=Type70(),        repeat=-1)
-    type_80: int    = Retriever(Type80, default=Type80(), repeat=-1)
+    type_80: int         = Retriever(Type80,        default=Type80(),        repeat=-1)
 
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
                  initialise_defaults: bool = True, **retriever_inits):
