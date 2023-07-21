@@ -35,7 +35,7 @@ class Dat(Enum):
     AOE2_DE_LATEST              = ("D:/Games/Steam/steamapps/common/AoE2DE/resources/_common/dat/empires2_x2_p1.dat",   "7.7", (7, 7),  200)     # VER 7.7  (Or latest)
     #MBA_MOD                     = ("D:/AOE2Modding/sample_dats/empires2_x2_p1_mba_gatherables.dat",      "7.7",     (7, 7),             200)
     #SWGB_TEST = ("D:/AOE2Modding/sample_dats/swgb_test.dat", 5.9, (5, 9))  # VER 5.9
-    AOK_1999_TEST = ("D:/AOE2Modding/sample_dats/aok_1999_test.dat",                                  5.7, (5, 7))     # VER 5.7
-    DE_LATEST_TEST = ("D:/AOE2Modding/sample_dats/de_latest_test.dat",                                  5.7, (5, 7))     # VER 5.7
-    AOE1_1997_TEST = ("D:/AOE2Modding/sample_dats/aok_1997_test.dat", "3.7", (3, 7), 32)  # VER 3.7
-    SWGB_TEST = ("D:/AOE2Modding/sample_dats/swgb_test.dat", "5.9", (5, 9), 55)  # VER 5.9
+    #AOK_1999_TEST = ("D:/AOE2Modding/sample_dats/aok_1999_test.dat",                                  5.7, (5, 7))     # VER 5.7
+    #DE_LATEST_TEST = ("D:/AOE2Modding/sample_dats/de_latest_test.dat",                                  5.7, (5, 7))     # VER 5.7
+    #AOE1_1997_TEST = ("D:/AOE2Modding/sample_dats/aok_1997_test.dat", "3.7", (3, 7), 32)  # VER 3.7
+    #SWGB_TEST = ("D:/AOE2Modding/sample_dats/swgb_test.dat", "5.9", (5, 9), 55)  # VER 5.9

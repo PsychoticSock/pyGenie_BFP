@@ -6,6 +6,8 @@ from binary_file_parser.types import uint8, uint16, int32
 from dat_file_locations import Dat
 from sections.tech_trees.age_tech_tree import AgeTechTree
 from sections.tech_trees.building_connection import BuildingConnection
+from sections.tech_trees.research_connection import TechConnection
+from sections.tech_trees.unit_connection import UnitConnection
 
 
 class TechTrees(BaseStruct):
@@ -17,10 +19,13 @@ class TechTrees(BaseStruct):
         Retriever.set_repeat(TechTrees.building_connections, instance, instance.building_connection_count)
     @staticmethod
     def set_unit_connection_count(_, instance: TechTrees):
-        pass#Retriever.set_repeat(TechTrees.unit_connections, instance, instance.unit_connection_count)
+        try:
+            Retriever.set_repeat(TechTrees.unit_connections, instance, instance.unit_connection_count)
+        except:
+            print("Failed to execute: set_unit_connection_count")
     @staticmethod
     def set_tech_connection_count(_, instance: TechTrees):
-        pass#Retriever.set_repeat(TechTrees.tech_connections, instance, instance.tech_connection_count)
+        Retriever.set_repeat(TechTrees.tech_connections, instance, instance.tech_connection_count)
 
     time_slice: int                             = Retriever(int32,                                                                              default=0)
     unit_kill_rate: int                         = Retriever(int32,                                                                              default=0)
@@ -43,8 +48,8 @@ class TechTrees(BaseStruct):
 
     age_connections: AgeTechTree                = Retriever(AgeTechTree,                                                                        default=AgeTechTree())
     building_connections: BuildingConnection    = Retriever(BuildingConnection,                                                                 default=BuildingConnection())
-    #unit_connections: UnitConnection            = Retriever(UnitConnection,                                                                     default=UnitConnection())
-    #tech_connections: ResearchConnection        = Retriever(ResearchConnection,                                                                 default=ResearchConnection())
+    unit_connections: UnitConnection            = Retriever(UnitConnection,                                                                     default=UnitConnection())
+    tech_connections: TechConnection        = Retriever(TechConnection, default=TechConnection())
 
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
                  initialise_defaults: bool = True, **retriever_inits):

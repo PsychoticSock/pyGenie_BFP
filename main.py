@@ -3,7 +3,7 @@ from dat_structure import DatStructure
 from decompress_sample import DecompressSample
 
 
-current_dat = Dat.AOE2_HD_DLC
+current_dat = Dat.AOE2_DE_LATEST
 batch = False
 
 if batch:
@@ -13,8 +13,12 @@ if batch:
         DecompressSample(current_dat)  # Make decompresed data available for hex editor
 
 
-        datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=True)
-        print(datfile.civs)
+        datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)
+
+        try:
+            print(datfile.tech_trees)
+        except:
+            print("Item not found to print")
 
 else:
     DecompressSample(current_dat)  # Make decompresed data available for hex editor
@@ -22,6 +26,6 @@ else:
     datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)
 
 try:
-    print(datfile.tech_trees)
+    print(datfile.tech_trees.tech_connections)
 except:
     print("Item not found to print")

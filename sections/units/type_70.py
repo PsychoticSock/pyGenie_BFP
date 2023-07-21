@@ -35,14 +35,14 @@ class Type70(BaseStruct):
 
     unknown_12_bytes: bytes                   = Retriever(Bytes[12], Version(Dat.AOE2_DE_START.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
 
-    projectile_min_count: float                 = Retriever(float32, Version(Dat.AOK_1999_TEST.ver()), Version(Dat.AOE2_DE_LATEST.ver()),  default=0)
-    projectile_max_count: int                   = Retriever(int8,    Version(Dat.AOK_1999_TEST.ver()), Version(Dat.AOE2_DE_LATEST.ver()),  default=0)
-    projectile_spawning_area_width: float       = Retriever(float32,  Version(Dat.AOK_1999_TEST.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
-    projectile_spawning_area_length: float      = Retriever(float32,  Version(Dat.AOK_1999_TEST.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
-    projectile_spawning_area_randomness: float  = Retriever(float32,  Version(Dat.AOK_1999_TEST.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
-    projectile_id1: int                         = Retriever(int32,    Version(Dat.AOK_1999_TEST.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
-    special_graphic_id: int                     = Retriever(int32,    Version(Dat.AOK_1999_TEST.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
-    special_activation: int                     = Retriever(int8,     Version(Dat.AOK_1999_TEST.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0) # Special Ability
+    projectile_min_count: float                 = Retriever(float32, Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),  default=0)
+    projectile_max_count: int                   = Retriever(int8,    Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),  default=0)
+    projectile_spawning_area_width: float       = Retriever(float32,  Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
+    projectile_spawning_area_length: float      = Retriever(float32,  Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
+    projectile_spawning_area_randomness: float  = Retriever(float32,  Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
+    projectile_id1: int                         = Retriever(int32,    Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
+    special_graphic_id: int                     = Retriever(int32,    Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
+    special_activation: int                     = Retriever(int8,     Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0) # Special Ability
 
 
     pierce_armor_displayed: int                 = Retriever(int16,                                                                default=0)
