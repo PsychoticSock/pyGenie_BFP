@@ -22,6 +22,10 @@ from sections.units.unit_line import UnitLine
 
 class DatStructure(BaseStruct):
     @staticmethod
+    def set_effect_bundle_count(_, instance: DatStructure):
+        Retriever.set_repeat(DatStructure.effectbundles, instance, instance.effect_bundle_count)
+
+    @staticmethod
     def set_terrain_restriction_count(_, instance: DatStructure):
         Retriever.set_repeat(DatStructure.float_ptr_terrain_tables, instance, instance.terrain_restriction_count)
         Retriever.set_repeat(DatStructure.terrain_pass_graphics_ptrs, instance, instance.terrain_restriction_count)
@@ -45,7 +49,7 @@ class DatStructure(BaseStruct):
         instance.struct_ver=current_version
 
     # @formatter:off
-    file_header: FileHeader                 = Retriever(FileHeader,                                                 default=FileHeader()) #, remaining_compressed=True)  # Need to remove this is BFP supports compression
+    file_header: FileHeader                 = Retriever(FileHeader,                                                 default=FileHeader())#, remaining_compressed=True)  # Need to remove this when BFP supports compression
     civ_count_swgb: int                     = Retriever(uint16, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
     unknown_swgb_01: int                    = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
     unknown_swgb_02: int                    = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
@@ -64,7 +68,9 @@ class DatStructure(BaseStruct):
 
     maps: Maps                              = Retriever(Maps,                                                       default=Maps(), on_set=[check_AOC_subversion])
 
-    effectbundles: list[EffectBundle]       = Retriever(Array32[EffectBundle],                                      default=[])
+    effect_bundle_count: int                = Retriever(uint32,                                                     default=0, on_set=[set_effect_bundle_count])
+    effectbundles: list[EffectBundle]       = Retriever(EffectBundle,                                               default=EffectBundle())
+    #effectbundles: list[EffectBundle]       = Retriever(Array32[EffectBundle],                                      default=EffectBundle())
 
     unit_lines: list[UnitLine]              = Retriever(Array16[UnitLine],   Version(Dat.SWGB.ver()),
                                                                                 Version(Dat.SWGB.ver()),            default=[])
