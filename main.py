@@ -24,11 +24,12 @@ else:
 
     datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)
 
-datfile.to_file(f"D:/AOE2Modding/sample_dats/output/{current_dat.name}.dat")
+
+datfile.to_file(f"D:/AOE2Modding/sample_dats/output/{current_dat.name}_2.dat")
 
 try:
     print("Done")
     print("Version=", datfile.struct_ver)
-    print(datfile)
+    print(datfile.civs)
 except:
     print("Item not found to print")

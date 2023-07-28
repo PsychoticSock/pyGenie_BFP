@@ -26,6 +26,18 @@ class DatStructure(BaseStruct):
         Retriever.set_repeat(DatStructure.effectbundles, instance, instance.effect_bundle_count)
 
     @staticmethod
+    def set_unit_header_count(_, instance: DatStructure):
+        Retriever.set_repeat(DatStructure.unit_headers, instance, instance.unit_headers_count)
+
+    @staticmethod
+    def set_civ_count(_, instance: DatStructure):
+        Retriever.set_repeat(DatStructure.civs, instance, instance.civ_count)
+
+    @staticmethod
+    def set_tech_count(_, instance: DatStructure):
+        Retriever.set_repeat(DatStructure.techs, instance, instance.tech_count)
+
+    @staticmethod
     def set_terrain_restriction_count(_, instance: DatStructure):
         Retriever.set_repeat(DatStructure.float_ptr_terrain_tables, instance, instance.terrain_restriction_count)
         Retriever.set_repeat(DatStructure.terrain_pass_graphics_ptrs, instance, instance.terrain_restriction_count)
@@ -49,47 +61,53 @@ class DatStructure(BaseStruct):
         instance.struct_ver=current_version
 
     # @formatter:off
-    file_header: FileHeader                 = Retriever(FileHeader,                                                 default=FileHeader())#, remaining_compressed=True)  # Need to remove this when BFP supports compression
-    civ_count_swgb: int                     = Retriever(uint16, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
-    unknown_swgb_01: int                    = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
-    unknown_swgb_02: int                    = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
-    blend_mode_count_swgb: int              = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
-    blend_mode_count_max_swgb: int          = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
-    terrain_restriction_count: int          = Retriever(uint16,                                                     default=0, on_set=[set_terrain_restriction_count])
-    terrain_count: int                      = Retriever(uint16,                                                     default=0)
-    float_ptr_terrain_tables:   list[int]   = Retriever(uint32,                                                     default=0)
+    file_header: FileHeader                 = Retriever(FileHeader,                                                                         default=FileHeader())#, remaining_compressed=True)  # Need to remove this when BFP supports compression
+    civ_count_swgb: int                     = Retriever(uint16, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),                 default=0)
+    unknown_swgb_01: int                    = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),                 default=0)
+    unknown_swgb_02: int                    = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),                 default=0)
+    blend_mode_count_swgb: int              = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),                 default=0)
+    blend_mode_count_max_swgb: int          = Retriever(uint32, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),                 default=0)
+    terrain_restriction_count: int          = Retriever(uint16,                                                                             default=0,      on_set=[set_terrain_restriction_count])
+    terrain_count: int                      = Retriever(uint16,                                                                             default=0)
+    float_ptr_terrain_tables:   list[int]   = Retriever(uint32,                                                                             default=0)
     terrain_pass_graphics_ptrs: list[int]   = Retriever(uint32, min_ver=Version(Dat.AOE2_AOK_1999.ver()),
-                                                                        max_ver=Version(Dat.AOE2_DE_LATEST.ver()),  default=0)  # This version information might be wrong but just a placeholder for now
-    terrain_tables:   list[TerrainTables]   = Retriever(TerrainTables,                                              default=TerrainTables(), repeat=0)
-    player_colour: PlayerColour             = Retriever(PlayerColour,                                               default=PlayerColour())
-    sounds: Sounds                          = Retriever(Sounds,                                                     default=Sounds())
-    graphics:  Graphics                     = Retriever(Graphics,                                                   default=Graphics())
-    terrains:  TerrainData                  = Retriever(TerrainData,                                                default=TerrainData())
+                                                                        max_ver=Version(Dat.AOE2_DE_LATEST.ver()),                          default=0)  # This version information might be wrong but just a placeholder for now
+    terrain_tables:   list[TerrainTables]   = Retriever(TerrainTables,                                                                      default=TerrainTables(), repeat=0)
+    player_colour: PlayerColour             = Retriever(PlayerColour,                                                                       default=PlayerColour())
+    sounds: Sounds                          = Retriever(Sounds,                                                                             default=Sounds())
+    graphics:  Graphics                     = Retriever(Graphics,                                                                           default=Graphics())
+    terrains:  TerrainData                  = Retriever(TerrainData,                                                                        default=TerrainData())
 
-    maps: Maps                              = Retriever(Maps,                                                       default=Maps(), on_set=[check_AOC_subversion])
+    maps: Maps                              = Retriever(Maps,                                                                               default=Maps(), on_set=[check_AOC_subversion])
 
-    effect_bundle_count: int                = Retriever(uint32,                                                     default=0, on_set=[set_effect_bundle_count])
-    effectbundles: list[EffectBundle]       = Retriever(EffectBundle,                                               default=EffectBundle())
+    effect_bundle_count: int                = Retriever(uint32,                                                                             default=0,      on_set=[set_effect_bundle_count])
+    effectbundles: list[EffectBundle]       = Retriever(EffectBundle,                                                                       default=EffectBundle())
     #effectbundles: list[EffectBundle]       = Retriever(Array32[EffectBundle],                                      default=EffectBundle())
 
+
     unit_lines: list[UnitLine]              = Retriever(Array16[UnitLine],   Version(Dat.SWGB.ver()),
-                                                                                Version(Dat.SWGB.ver()),            default=[])
-    unit_headers: list[UnitHeader]          = Retriever(Array32[UnitHeader], Version(Dat.AOE2_AOK_1999.ver()),
-                                                                                Version(Dat.AOE2_DE_LATEST.ver()),  default=[])
+                                                                                Version(Dat.SWGB.ver()),                                    default=[])
+    unit_headers_count: int                 = Retriever(uint32,                                                                             default=0,      on_set=[set_unit_header_count])
+    unit_headers: list[UnitHeader]          = Retriever(UnitHeader, Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),    default=UnitHeader())
+    #unit_headers: list[UnitHeader]          = Retriever(Array32[UnitHeader], Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),  default=[])
 
     #civ_count: int                          = Retriever(int16,                                                      default=0) # For testing purposes
     #civ: Civ                                = Retriever(Civ, default=Civ(), repeat=1)                                          # For testing purposes
-    civs: list[Civ]                         = Retriever(Array16[Civ],                                               default=[])
 
-    unknown_swgb_03: int                    = Retriever(int8, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
+    civ_count: int                          = Retriever(uint16,                                                                             default=0,      on_set=[set_civ_count])
+    civs: list[Civ]                         = Retriever(Civ,                                                                                default=Civ())
 
-    #tech_count: int                         = Retriever(uint16,                                                     default=0)
-    #techs: Tech                             = Retriever(Tech,                                                       default=Tech(), repeat=10)
-    techs: list[Tech]                       = Retriever(Array16[Tech], default=Tech())
+    #civs: list[Civ]                         = Retriever(Array16[Civ],                                               default=[])
 
-    unknown_swgb_4: int                    = Retriever(int8, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),   default=0)
+    unknown_swgb_03: int                    = Retriever(int8, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),                   default=0)
 
-    tech_trees: TechTrees                   = Retriever(TechTrees, Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),  default=TechTrees())
+    tech_count: int                         = Retriever(uint16,                                                                             default=0,      on_set=[set_tech_count])
+    techs: list[Tech]                       = Retriever(Tech,                                                                               default=Tech())
+    #techs: list[Tech]                       = Retriever(Array16[Tech], default=Tech())
+
+    unknown_swgb_4: int                     = Retriever(int8, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),                   default=0)
+
+    tech_trees: TechTrees                   = Retriever(TechTrees, Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),     default=TechTrees())
 
     # @formatter:on
 

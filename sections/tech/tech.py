@@ -17,7 +17,7 @@ class Tech(BaseStruct):
     required_tech_count: int                        = Retriever(int16,                                                                              default=0)
 
     civilization_id: int                            = Retriever(int16,   Version(Dat.AOE2_AOK_1999.ver()),    Version(Dat.AOE2_DE_LATEST.ver()),    default=0)
-    full_tech_mode: bool                            = Retriever(bool16,  Version(Dat.AOE2_AOK_1999.ver()),   Version(Dat.AOE2_DE_LATEST.ver()),     default=0)
+    full_tech_mode: int                             = Retriever(int16,  Version(Dat.AOE2_AOK_1999.ver()),   Version(Dat.AOE2_DE_LATEST.ver()),     default=0)
     research_location_id: int                       = Retriever(int16,                                                                              default=0)
 
     language_dll_name_1: int                        = Retriever(uint32,  Version(Dat.AOE2_DE_START.ver()),   Version(Dat.AOE2_DE_LATEST.ver()),     default=0)
