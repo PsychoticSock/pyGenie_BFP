@@ -38,7 +38,7 @@ class AttackingUnit(BaseStruct):
 
     accuracy_dispersion: float      = Retriever(float32, Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),       default=0)
 
-    attack_sprite_id: int           = Retriever(int16,                                                                              default=0)
+    attack_graphic_id: int           = Retriever(int16,                                                                              default=0)  #previously called attack_sprite_id
     melee_armor_displayed: int      = Retriever(int16,                                                                              default=0)
     attack_displayed: int           = Retriever(int16,                                                                              default=0)
     range_displayed: float          = Retriever(float32,                                                                            default=0)

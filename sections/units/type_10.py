@@ -30,6 +30,7 @@ class Type10(BaseStruct):
     language_dll_creation_2: int            = Retriever(uint16, Version(Dat.AOE1_1997.ver()), Version(Dat.SWGB_EXPANSION.ver()),                  default=0)
 
 
+
     unit_class: int                         = Retriever(int16,                                                                                    default=0)
     idle_graphic_0: int                     = Retriever(int16,                                                                                    default=0)
     idle_graphic_1: int                     = Retriever(int16,  Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),              default=0)
@@ -149,7 +150,7 @@ class Type10(BaseStruct):
     name_4: str                             = Retriever(Bytes[1], Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.SWGB_EXPANSION.ver()), default=0)  # Definitely wrong type here
 
 
-    name2: str                              = Retriever(str16, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),     default=0)
+    name_5: str                              = Retriever(str16, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),     default=0)
     unit_line_id: int                       = Retriever(int16, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),     default=0)
     min_tech_level: int                     = Retriever(int8,  Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),      default=0)
     id1: int                                = Retriever(int16,  default=0)

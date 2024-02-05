@@ -44,15 +44,15 @@ class UnitData(BaseStruct):
 
     unit_type: int = Retriever(int8, default=0, on_set=[enable_type_properties])
 
-    type_10: int         = Retriever(Type10,        default=Type10())
-    type_20: int         = Retriever(Type20,        default=Type20(),        repeat=-1)
-    type_25: int         = Retriever(Type25,        default=Type25(),        repeat=-1)
-    type_30: int         = Retriever(Type30,        default=Type30(),        repeat=-1)
-    type_40: int         = Retriever(Type40,        default=Type40(),        repeat=-1)
-    type_60: int         = Retriever(Type60,        default=Type60(),        repeat=-1)
-    attacking_type: int  = Retriever(AttackingUnit, default=AttackingUnit(), repeat=-1)
-    type_70: int         = Retriever(Type70,        default=Type70(),        repeat=-1)
-    type_80: int         = Retriever(Type80,        default=Type80(),        repeat=-1)
+    type_10:        Type10          = Retriever(Type10,        default=Type10())
+    type_20:        Type20          = Retriever(Type20,        default=Type20(),        repeat=-1)
+    type_25:        Type25          = Retriever(Type25,        default=Type25(),        repeat=-1)
+    type_30:        Type30          = Retriever(Type30,        default=Type30(),        repeat=-1)
+    type_40:        Type40          = Retriever(Type40,        default=Type40(),        repeat=-1)
+    type_60:        Type60          = Retriever(Type60,        default=Type60(),        repeat=-1)
+    attacking_type: AttackingUnit   = Retriever(AttackingUnit, default=AttackingUnit(), repeat=-1)
+    type_70:        Type70          = Retriever(Type70,        default=Type70(),        repeat=-1)
+    type_80:        Type80          = Retriever(Type80,        default=Type80(),        repeat=-1)
 
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
                  initialise_defaults: bool = True, **retriever_inits):

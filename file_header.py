@@ -17,7 +17,7 @@ class FileHeader(BaseStruct):
 
     @classmethod
     def compress(cls, bytes_: bytes) -> bytes:
-      deflate_obj = zlib.compressobj(9, zlib.DEFLATED, -zlib.MAX_WBITS)
+      deflate_obj = zlib.compressobj(zlib.Z_DEFAULT_COMPRESSION, zlib.DEFLATED, -zlib.MAX_WBITS)
       compressed = deflate_obj.compress(bytes_) + deflate_obj.flush()
       return compressed
 

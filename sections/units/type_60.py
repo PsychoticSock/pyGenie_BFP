@@ -8,7 +8,7 @@ from sections.units.attacking_unit import AttackingUnit
 
 class Type60(BaseStruct):
 
-    attacking_type: int  = Retriever(AttackingUnit, default=AttackingUnit(), repeat=1)
+    attacking_type: AttackingUnit  = Retriever(AttackingUnit, default=AttackingUnit())  #, repeat=1)
 
     projectile_type: int         = Retriever(uint8,      default=0)
     smart_mode: int              = Retriever(uint8,      default=0)
