@@ -1,8 +1,9 @@
 from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import float32
 
+from class_for_copying import DatFileObject
 
-class TerrainRestrictions(BaseStruct):
+class TerrainRestrictions(BaseStruct, DatFileObject):
     accessible_dmgmultiplier: int   = Retriever(float32,    default=1)
 
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, initialise_defaults=True, **retriever_inits):

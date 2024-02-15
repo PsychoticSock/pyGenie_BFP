@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from class_for_copying import DatFileObject
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version, RetrieverCombiner
 from binary_file_parser.types import int8, uint8, uint16, int16, str16, int32, Array16, FixedLenStr, float32
 
@@ -7,7 +10,7 @@ from dat_file_locations import Dat
 from sections.units.unit_data import UnitData
 
 
-class Civ(BaseStruct):
+class Civ(BaseStruct, DatFileObject):
     @staticmethod
     def set_resources_count(_, instance: Civ):
         Retriever.set_repeat(Civ.resources , instance, instance.resources_count)
@@ -15,7 +18,28 @@ class Civ(BaseStruct):
     def set_unit_data_repeat(_, instance: Civ):
         if instance.struct_ver > (0,0):
             print(f"{instance.civ_name} civ has {len([x for x in instance.unit_offsets if x > 0])} units")
-            Retriever.set_repeat(Civ.unit_data , instance, len([x for x in instance.unit_offsets if x > 0]))#
+            Retriever.set_repeat(Civ.unit_data , instance, len([x for x in instance.unit_offsets if x > 0]))  #Original unit data length
+            #Retriever.set_repeat(Civ.unit_data, instance, len(instance.unit_offsets))
+
+    @staticmethod
+    def strip_empty_units(_, instance: Civ):
+        units_to_remove = []
+        instance.unit_offsets = []
+        for unit_id, unit in enumerate(instance.unit_data):
+            if unit == None:
+                instance.unit_offsets.append(0)
+                units_to_remove.append(unit_id)
+            else:
+                instance.unit_offsets.append(1)
+
+        instance.unit_data = [ele for idx, ele in enumerate(instance.unit_data) if idx not in units_to_remove]
+
+    @staticmethod
+    def write_unit_data_repeat(_, instance: Civ):
+        if instance.struct_ver > (0,0):
+            print(f"{instance.civ_name} civ has {len([x for x in instance.unit_offsets])} units, capacity is {len(instance.unit_data)} units")
+            Retriever.set_repeat(Civ.unit_data, instance, len(instance.unit_data))
+
 
     player_type: int              = Retriever(int8,                                                                                       default=0)
     name_len_debug_1: int         = Retriever(uint16,           Version(Dat.AOE1DE.ver()),            Version(Dat.AOE1DE.ver()),          default=0)
@@ -39,11 +63,13 @@ class Civ(BaseStruct):
     resources: list[float]        = Retriever(float32,                                                                                    default=0)
 
     icon_set: int                 = Retriever(uint8,                                                                                       default=0)
-    unit_offsets: list[int]       = Retriever(Array16[int32],                                                                             default=[], on_set=[set_unit_data_repeat])
+    unit_offsets: list[int]       = Retriever(Array16[int32],                                                                             default=[], on_set=[set_unit_data_repeat], on_write=[strip_empty_units, write_unit_data_repeat])
     # If an entry is    b"\00\00\00\00" then a unit is non-existent for that civ,
     # if present it is  b"\01\00\00\00"
+    # In AOK era, the values that are non-zero can just be set to 1, since that's what happens when AGE3 saves a dat in the AOK format
 
     unit_data: list[UnitData]     = Retriever(UnitData, default=UnitData())
+
 
 
 

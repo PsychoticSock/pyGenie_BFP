@@ -5,8 +5,9 @@ from binary_file_parser.types import int32, int16, uint16, FixedLenStr, str16
 
 from dat_file_locations import Dat
 
+from class_for_copying import DatFileObject
 
-class SoundItem(BaseStruct):
+class SoundItem(BaseStruct, DatFileObject):
 
     # @formatter:off
     name_len_debug_aoe1de: int  = Retriever(uint16,          min_ver=Dat.AOE1DE.ver(),          max_ver=Dat.AOE1DE.ver(),           default=0)

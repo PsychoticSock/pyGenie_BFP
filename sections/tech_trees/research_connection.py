@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, int32, Array8
 
@@ -7,7 +9,7 @@ from dat_file_locations import Dat
 from sections.tech_trees.other_connection import OtherConnection
 
 
-class TechConnection(BaseStruct):
+class TechConnection(BaseStruct, DatFileObject):
     id: int                             = Retriever(int32,                                                                                          default=0)
     status: int                         = Retriever(int8,                                                                                           default=0)
     upper_building: int                 = Retriever(int32,                                                                                          default=0)

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version, RetrieverCombiner
 from binary_file_parser.types import uint8, uint16, int32
 
@@ -10,7 +12,7 @@ from sections.tech_trees.research_connection import TechConnection
 from sections.tech_trees.unit_connection import UnitConnection
 
 
-class TechTrees(BaseStruct):
+class TechTrees(BaseStruct, DatFileObject):
     @staticmethod
     def set_age_connection_count(_, instance: TechTrees):
         Retriever.set_repeat(TechTrees.age_connections, instance, instance.age_connection_count)

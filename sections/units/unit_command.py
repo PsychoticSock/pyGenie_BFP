@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, int16, uint32, float32
 
 from dat_file_locations import Dat
 
 
-class UnitCommand(BaseStruct):
+class UnitCommand(BaseStruct, DatFileObject):
     command_used: int                       = Retriever(int16,                                                                       default=0)
     command_id: int                         = Retriever(int16,                                                                       default=0)
     is_default: int                         = Retriever(int8,                                                                        default=0)

@@ -6,8 +6,11 @@ from binary_file_parser.types import uint16, uint32
 from dat_file_locations import Dat
 from sections.graphics.graphic import GraphicDataDE, GraphicDataSWGB, GraphicDataAOE1_2
 
+
+from class_for_copying import DatFileObject
+
 debug_repeat = 368
-class Graphics(BaseStruct):
+class Graphics(BaseStruct, DatFileObject):
     @staticmethod
     def set_graphic_pointer_count(_, instance: Graphics):
         Retriever.set_repeat(Graphics.graphic_pointers, instance, instance.graphic_count)

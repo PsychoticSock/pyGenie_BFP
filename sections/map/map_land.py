@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, int16, int32
 
 
-class MapLand(BaseStruct):
+class MapLand(BaseStruct, DatFileObject):
     land_id: int            = Retriever(int32,   default=0)
     terrain: int            = Retriever(int32,   default=0)
     land_spacing: int       = Retriever(int32,   default=0)

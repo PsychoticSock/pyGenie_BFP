@@ -6,8 +6,9 @@ from binary_file_parser.types import Array16
 from dat_file_locations import Dat
 from sections.player_color.player_color_data import PlayerColorData1, PlayerColorData2
 
+from class_for_copying import DatFileObject
 
-class PlayerColour(BaseStruct):
+class PlayerColour(BaseStruct, DatFileObject):
 
     player_colour_data_ror_aoe1de: list[PlayerColorData1] = Retriever(Array16[PlayerColorData1], min_ver=Dat.AOE1_1997.ver(),
                                                                                                  max_ver=Dat.AOE1DE.ver(),                      default=[])

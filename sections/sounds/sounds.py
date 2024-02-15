@@ -5,8 +5,9 @@ from binary_file_parser.types import uint16
 
 from sections.sounds.sound import Sound
 
+from class_for_copying import DatFileObject
 
-class Sounds(BaseStruct):
+class Sounds(BaseStruct, DatFileObject):
     @staticmethod
     def set_sound_count(_, instance: Sounds):
         Retriever.set_repeat(Sounds.sound_data, instance, instance.sound_count)

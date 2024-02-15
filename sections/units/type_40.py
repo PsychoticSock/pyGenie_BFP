@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version, RetrieverCombiner
 from binary_file_parser.types import int8, int16, float32, uint32, Array16
 
@@ -7,7 +9,7 @@ from dat_file_locations import Dat
 from sections.units.unit_command import UnitCommand
 
 
-class Type40(BaseStruct):
+class Type40(BaseStruct, DatFileObject):
     default_task_id: int               = Retriever(int16,                                                                                       default=0)
     search_radius: float               = Retriever(float32,                                                                                     default=0)
     work_rate: float                   = Retriever(float32,                                                                                     default=0)

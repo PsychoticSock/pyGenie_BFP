@@ -3,8 +3,9 @@ from binary_file_parser.types import float32, int32
 
 from dat_file_locations import Dat
 
+from class_for_copying import DatFileObject
 
-class TerrainPassGraphics(BaseStruct):
+class TerrainPassGraphics(BaseStruct, DatFileObject):
 
     # @formatter:off
     slp_id_exit_tile: int           = Retriever(int32,                                                                          default=1)

@@ -6,8 +6,9 @@ from binary_file_parser.types import uint8, int8, int16, int32, FixedLenStr
 from sections.terrain.frame_data import FrameData
 from sections.terrain.terrain_animation import TerrainAnimation
 
+from class_for_copying import DatFileObject
 
-class TerrainBorder(BaseStruct):
+class TerrainBorder(BaseStruct, DatFileObject):
     enabled: int                        = Retriever(int8,               default=0)
     random: int                         = Retriever(int8,               default=0)
     internal_name: str                  = Retriever(FixedLenStr[13],    default=0)

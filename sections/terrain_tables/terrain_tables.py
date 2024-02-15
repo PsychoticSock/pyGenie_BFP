@@ -6,8 +6,9 @@ from dat_file_locations import Dat
 from sections.terrain_tables.terrain_pass_graphics import TerrainPassGraphics
 from sections.terrain_tables.terrain_restrictions import TerrainRestrictions
 
+from class_for_copying import DatFileObject
 
-class TerrainTables(BaseStruct):
+class TerrainTables(BaseStruct, DatFileObject):
 
     terrain_restrictions: int                           = Retriever(TerrainRestrictions,                                    default=TerrainRestrictions())
     terrain_pass_graphics: list[TerrainPassGraphics]    = Retriever(TerrainPassGraphics, min_ver=Version(Dat.AOE1DE.ver()), default=TerrainPassGraphics())

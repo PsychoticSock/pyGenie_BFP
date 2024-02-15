@@ -1,7 +1,9 @@
 from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import int32, int16, uint16, uint8, FixedLenStr
 
-class PlayerColorData2(BaseStruct):
+from class_for_copying import DatFileObject
+
+class PlayerColorData2(BaseStruct, DatFileObject):
 
     # @formatter:off
     id: int                      = Retriever(int32,  default=0)
@@ -17,7 +19,7 @@ class PlayerColorData2(BaseStruct):
     def __init__(self, struct_ver: Version=Version((0,)), parent: BaseStruct=None, idx: int=-1, initialise_defaults: bool=True, **retriever_inits):
         super().__init__(struct_ver, parent, idx, initialise_defaults, **retriever_inits)
 
-class PlayerColorData1(BaseStruct):
+class PlayerColorData1(BaseStruct, DatFileObject):
 
     # @formatter:off
     colour_name: int     = Retriever(FixedLenStr[30], default=0)

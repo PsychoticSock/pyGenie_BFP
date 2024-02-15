@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, int16, float32, int32, Bytes
 
@@ -7,7 +11,7 @@ from dat_file_locations import Dat
 from sections.units.resource_cost import ResourceCost
 
 
-class Type70(BaseStruct):
+class Type70(BaseStruct, DatFileObject):
     resource_cost: list[ResourceCost]       = Retriever(ResourceCost,                                                                       default=ResourceCost(), repeat=3)
     creation_time: int                      = Retriever(int16,                                                                              default=0)
     train_location_i: int                   = Retriever(int16,                                                                              default=0)

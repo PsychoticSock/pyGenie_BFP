@@ -1,12 +1,18 @@
 import copy
-import os
+
+from datetime import datetime
+
 import zlib
 import cProfile, pstats
 
+from binary_file_parser.retrievers import Retriever
+
+from class_for_copying import DatFileObject
 from dat_file_locations import Dat
 from dat_structure import DatStructure
 from decompress_sample import DecompressSample
 from sections.units import unit_data, type_10
+from sections.units.unit_data import UnitData
 from unitdatwrapper import DatUnitWrapper
 
 current_dat = Dat.AOE2_AOK_1999
@@ -15,9 +21,6 @@ batch = False
 def compress(bytes_: bytes) -> bytes:
     compressed = zlib.compress(bytes_, zlib.Z_DEFAULT_COMPRESSION, -zlib.MAX_WBITS)
     return compressed
-
-
-
 
 if batch:
     for dat in Dat:
@@ -35,6 +38,7 @@ if batch:
 else:
     DecompressSample(current_dat)  # Make decompresed data available for hex editor
 
+
     record_performance = False
     if record_performance:
         profiler = cProfile.Profile()
@@ -45,18 +49,36 @@ else:
     #cProfile.run("datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)")
         datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)
 
-        for civ in range(0,5):
-            gaia_castle = DatUnitWrapper(datfile, civ, 81)
-            print("hitpoints here:", gaia_castle.hit_points)
+        #for x, civ in enumerate(datfile.civs):
+        #    current_datfile_capacity = len(datfile.civs[x].unit_offsets)
+        #    print(datfile.civs[0].unit_offsets)
+        #    print("Current datfile unit capacity:", current_datfile_capacity)
+#
+        #    for unit_id, value in enumerate(datfile.civs[x].unit_offsets):
+        #        if value == 0:
+        #            datfile.civs[x].unit_data.insert(unit_id, None)
+        #            print(f"length of civ {x} unit data is {len(datfile.civs[x].unit_data)})")
 
-            #gaia_castle.change_hp(10000)
-            gaia_castle.hit_points = 20000
-            gaia_castle.standing_graphic_1_id = 666
+        #    print(civ)
 
-            print("Class: ", gaia_castle.unit_class)
-            gaia_castle.dead_unit_id = 123
+        for civ, data in enumerate(datfile.civs):
+            test = copy.deepcopy(datfile.civs[civ].unit_data[82])
+            datfile.civs[civ].unit_data.append(test)
 
-            print("dat hitpoints", civ, datfile.civs[civ].unit_data[81].type_10.hit_points)
+
+        #    castle = DatUnitWrapper(datfile, civ, 82)
+            #castle.hit_points = 20000
+            #castle.standing_graphic_1_id = 666
+            #castle.dead_unit_id = 123
+#
+        #    print(f"castle2 copy start for civ {civ}")
+            #print(datetime.now().strftime("%H:%M:%S"))
+            #castle2 = copy.deepcopy(castle)
+            #print(f"castle2 copied for civ {civ}")
+            #print(datetime.now().strftime("%H:%M:%S"))
+            #datfile.civs[civ].unit_data.append(castle2)
+            #print(f"castle2 appended for civ {civ}")
+            #print(datetime.now().strftime("%H:%M:%S"))
 
     #print(datfile.civs[0].unit_data[234].type_10.hit_points)
     #datfile.civs[0].unit_data[234].type_10.hit_points = 15000

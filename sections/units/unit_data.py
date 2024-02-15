@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8
 
@@ -14,7 +16,7 @@ from sections.units.type_70 import Type70
 from sections.units.type_80 import Type80
 
 
-class UnitData(BaseStruct):
+class UnitData(BaseStruct, DatFileObject):
     @staticmethod
     def enable_type_properties(_, instance: UnitData):
         if instance.unit_type >= 20:
@@ -57,4 +59,5 @@ class UnitData(BaseStruct):
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
                  initialise_defaults: bool = True, **retriever_inits):
         super().__init__(struct_ver, parent, idx, initialise_defaults, **retriever_inits)
+
 

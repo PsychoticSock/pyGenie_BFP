@@ -3,8 +3,9 @@ from __future__ import annotations
 from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import int16
 
+from class_for_copying import DatFileObject
 
-class FrameData(BaseStruct):
+class FrameData(BaseStruct, DatFileObject):
     frame_count: int    = Retriever(int16,      default=0)
     angle_count: int    = Retriever(int16,      default=0)
     shape_id: int       = Retriever(int16,      default=0)

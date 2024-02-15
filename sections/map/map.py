@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int32, uint32
 
@@ -9,7 +11,7 @@ from sections.map.map_terrain import MapTerrain
 from sections.map.map_unit import MapUnit
 
 
-class MapDetails(BaseStruct):
+class MapDetails(BaseStruct, DatFileObject):
     @staticmethod
     def set_MapLand_count(_, instance: MapDetails):
         Retriever.set_repeat(MapDetails.base_zones, instance, instance.base_zone_count)

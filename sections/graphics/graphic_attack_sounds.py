@@ -5,8 +5,9 @@ from binary_file_parser import BaseStruct, Retriever, Version
 from dat_file_locations import Dat
 from sections.sounds.sound_prop import DE2SoundProp, SoundProp
 
+from class_for_copying import DatFileObject
 
-class GraphicAttackSounds(BaseStruct):
+class GraphicAttackSounds(BaseStruct, DatFileObject):
     sound_props: list[SoundProp]            = Retriever(SoundProp,    min_ver=Dat.AOE1_1997.ver(),      max_ver=Dat.SWGB.ver(), default=SoundProp(),    repeat=3)
     sound_props_AOE2DE: list[DE2SoundProp]  = Retriever(DE2SoundProp, min_ver=Dat.AOE2_DE_START.ver(),                          default=DE2SoundProp())
 

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, uint8, int16, float32, int32
 
@@ -8,7 +10,7 @@ from sections.units.building_annex import BuildingAnnex
 from sections.units.looting_table import LootingTable
 
 
-class Type80(BaseStruct):
+class Type80(BaseStruct, DatFileObject):
     construction_graphic_id: int       = Retriever(int16, default=0)
     snow_graphic_id: int               = Retriever(int16,         Version(Dat.AOE2_CONQUERORS_2000.ver()), Version(Dat.AOE2_DE_LATEST.ver()),   default=0)
     destruction_graphic_id: int        = Retriever(int16,         Version(Dat.AOE2_DE_START.ver()), Version(Dat.AOE2_DE_LATEST.ver()),          default=0)

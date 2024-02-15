@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version, RetrieverCombiner
 from binary_file_parser.types import uint8, int8, uint16, int16, uint32, int32, float32, Bytes, Array8, str16
 
@@ -8,7 +10,7 @@ from sections.units.damage_graphic import DamageGraphic
 from sections.units.resource_storage import ResourceStorage
 
 
-class Type10(BaseStruct):
+class Type10(BaseStruct, DatFileObject):
     @staticmethod
     def set_name_length_1(_, instance: Type10):
         Retriever.set_repeat(Type10.name_3, instance, instance.name_length_1)
@@ -157,6 +159,6 @@ class Type10(BaseStruct):
 
     id2: int                                = Retriever(int16, Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()), default=0)
 
-def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
-                 initialise_defaults: bool = True, **retriever_inits):
-        super().__init__(struct_ver, parent, idx, initialise_defaults, **retriever_inits)
+    def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, idx: int = -1,
+                     initialise_defaults: bool = True, **retriever_inits):
+            super().__init__(struct_ver, parent, idx, initialise_defaults, **retriever_inits)

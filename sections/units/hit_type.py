@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int16
 
 
-class HitType(BaseStruct):
+class HitType(BaseStruct, DatFileObject):
     type_id: int    = Retriever(int16, default=0)
     amount: int     = Retriever(int16, default=0)
 

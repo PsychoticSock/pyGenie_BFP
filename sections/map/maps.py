@@ -6,8 +6,9 @@ from binary_file_parser.types import uint32
 from sections.map.map import MapDetails
 from sections.map.map_info import MapInfo
 
+from class_for_copying import DatFileObject
 
-class Maps(BaseStruct):
+class Maps(BaseStruct, DatFileObject):
     @staticmethod
     def set_map_count(_, instance: Maps):
         Retriever.set_repeat(Maps.map_info, instance, instance.random_map_count)

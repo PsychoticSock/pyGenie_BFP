@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, int32, Array8
 
 from dat_file_locations import Dat
 
 
-class BuildingConnection(BaseStruct):
+class BuildingConnection(BaseStruct, DatFileObject):
     id: int                                     = Retriever(int32,                                                                                  default=0)
     status: int                                 = Retriever(int8,                                                                                       default=0)
 

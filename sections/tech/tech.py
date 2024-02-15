@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version, RetrieverCombiner
 from binary_file_parser.types import int8, int16, uint16, int32, uint32, str16, bool16
 
@@ -7,7 +9,7 @@ from dat_file_locations import Dat
 from sections.units.resource_cost import TechResourceCost
 
 
-class Tech(BaseStruct):
+class Tech(BaseStruct, DatFileObject):
     required_techs_1: list[int]                     = Retriever(int16,  Version(Dat.AOE2_AOK_1999.ver()),   Version(Dat.AOE2_DE_LATEST.ver()),      default=0, repeat=6)
     required_techs_2: list[int]                     = Retriever(int16,  Version(Dat.AOE1_1997.ver()),       Version(Dat.AOE1DE.ver()),     default=0, repeat=4)
     required_techs: list[int]                       = RetrieverCombiner([required_techs_1, required_techs_2])

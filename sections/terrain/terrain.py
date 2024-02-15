@@ -7,8 +7,9 @@ from dat_file_locations import Dat
 from sections.terrain.frame_data import FrameData
 from sections.terrain.terrain_animation import TerrainAnimation
 
+from class_for_copying import DatFileObject
 
-class Terrain(BaseStruct):
+class Terrain(BaseStruct, DatFileObject):
     def set_repeat_terrain(_, instance: Terrain):
         hardcoded_terrain_count = 0
         if instance.struct_ver == Dat.SWGB.ver():

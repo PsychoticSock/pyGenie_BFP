@@ -44,7 +44,6 @@ class DatUnitWrapper:
         """"""
         if Version(Dat.AOE1_1997.ver()) >= self._dat.struct_ver >= Version(Dat.AOE1DE_ORIGINAL.ver()):
             return self._dat.civs[self._civ_id].unit_data[self._unit_id].type_10.name_length_1
-
     @name_length_1.setter
     def name_length_1(self, value: int):
         self._dat.civs[self._civ_id].unit_data[self._unit_id].type_10.name_length_1 = value
@@ -54,7 +53,6 @@ class DatUnitWrapper:
         """"""
         if Version(Dat.AOE2_AOK_1999.ver()) >= self._dat.struct_ver >= Version(Dat.SWGB_EXPANSION.ver()):
             return self._dat.civs[self._civ_id].unit_data[self._unit_id].type_10.name_length_2
-
     @name_length_2.setter
     def name_length_2(self, value: int):
         self._dat.civs[self._civ_id].unit_data[self._unit_id].type_10.name_length_2 = value
@@ -64,8 +62,6 @@ class DatUnitWrapper:
         """"""
         if Version(Dat.AOE1_1997.ver()) >= self._dat.struct_ver >= Version(Dat.SWGB_EXPANSION.ver()):
             return self._dat.civs[self._civ_id].unit_data[self._unit_id].type_10.name_length
-
-
     @name_length.setter
     def name_length(self, value: int):
         self._dat.civs[self._civ_id].unit_data[self._unit_id].type_10.name_length = value
@@ -74,7 +70,6 @@ class DatUnitWrapper:
     def unit_id(self) -> int:
         """"""
         return self._dat.civs[self._civ_id].unit_data[self._unit_id].type_10.unit_id
-
     @unit_id.setter
     def unit_id(self, value: int):
         self._dat.civs[self._civ_id].unit_data[self._unit_id].type_10.unit_id = value

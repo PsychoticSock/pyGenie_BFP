@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import uint8, Array16
 
 from sections.units.unit_command import UnitCommand
 
 
-class UnitHeader(BaseStruct):
+class UnitHeader(BaseStruct, DatFileObject):
     @staticmethod
     def enable_units_command_count(_, instance: UnitHeader):
         if not instance.exists:

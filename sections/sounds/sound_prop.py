@@ -3,8 +3,10 @@ from __future__ import annotations
 from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import int16, uint32
 
+from class_for_copying import DatFileObject
 
-class DE2SoundProp(BaseStruct):
+
+class DE2SoundProp(BaseStruct, DatFileObject):
     sound_delay0: int = Retriever(int16,    default=0)
     sound_id0: int      = Retriever(int16,  default=0)
     wwise_sound0: int   = Retriever(uint32, default=0)
@@ -20,7 +22,7 @@ class DE2SoundProp(BaseStruct):
         super().__init__(struct_ver, parent, idx, initialise_defaults, **retriever_inits)
 
 
-class SoundProp(BaseStruct):
+class SoundProp(BaseStruct, DatFileObject):
     sound_delay: int    = Retriever(int16,  default=0)
     sound_id: int       = Retriever(int16,  default=0)
 

@@ -4,7 +4,9 @@ from binary_file_parser import BaseStruct, Retriever, Version
 from binary_file_parser.types import int16, int32
 
 
-class GraphicDeltas(BaseStruct):
+from class_for_copying import DatFileObject
+
+class GraphicDeltas(BaseStruct, DatFileObject):
     graphic_id: int     = Retriever(int16,      default=0)
     padding_1: int      = Retriever(int16,      default=0)
     sprite_ptr: int     = Retriever(int32,      default=0)

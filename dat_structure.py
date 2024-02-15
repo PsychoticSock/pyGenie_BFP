@@ -20,7 +20,9 @@ from sections.units.unit_header import UnitHeader
 from sections.units.unit_line import UnitLine
 
 
-class DatStructure(BaseStruct):
+from class_for_copying import DatFileObject
+
+class DatStructure(BaseStruct, DatFileObject):
     @staticmethod
     def set_effect_bundle_count(_, instance: DatStructure):
         Retriever.set_repeat(DatStructure.effectbundles, instance, instance.effect_bundle_count)
@@ -42,6 +44,15 @@ class DatStructure(BaseStruct):
         Retriever.set_repeat(DatStructure.float_ptr_terrain_tables, instance, instance.terrain_restriction_count)
         Retriever.set_repeat(DatStructure.terrain_pass_graphics_ptrs, instance, instance.terrain_restriction_count)
         Retriever.set_repeat(DatStructure.terrain_tables, instance, instance.terrain_restriction_count)
+
+    @staticmethod
+    def realign_unit_ids(_, instance: DatStructure):
+        for x, civ in enumerate(instance.civs):
+            for unit_id, value in enumerate(instance.civs[x].unit_offsets):
+                if value == 0:
+                    instance.civs[x].unit_data.insert(unit_id, None)
+                    #print(f"length of civ {x} unit data is {len(datfile.civs[x].unit_data)})")
+
 
     @staticmethod
     def check_AOC_subversion(_, instance: DatStructure):
@@ -101,7 +112,7 @@ class DatStructure(BaseStruct):
 
     unknown_swgb_03: int                    = Retriever(int8, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),                   default=0)
 
-    tech_count: int                         = Retriever(uint16,                                                                             default=0,      on_set=[set_tech_count])
+    tech_count: int                         = Retriever(uint16,                                                                             default=0,      on_set=[realign_unit_ids, set_tech_count])
     techs: list[Tech]                       = Retriever(Tech,                                                                               default=Tech())
     #techs: list[Tech]                       = Retriever(Array16[Tech], default=Tech())
 
@@ -110,6 +121,7 @@ class DatStructure(BaseStruct):
     tech_trees: TechTrees                   = Retriever(TechTrees, Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),     default=TechTrees())
 
     # @formatter:on
+
 
     @classmethod
     def get_version(
@@ -124,5 +136,8 @@ class DatStructure(BaseStruct):
         output_ver = stream.check_if_needs_subversion(output_ver)
         return output_ver
 
+
     def __init__(self, struct_ver: Version = Version((0,)), parent: BaseStruct = None, initialise_defaults=True, **retriever_inits):
         super().__init__(struct_ver, parent, initialise_defaults=initialise_defaults, **retriever_inits)
+
+

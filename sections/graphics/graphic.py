@@ -7,7 +7,9 @@ from dat_file_locations import Dat
 from sections.graphics.graphic_data_common import GraphicDataCommon
 
 
-class GraphicDataDE(BaseStruct):
+from class_for_copying import DatFileObject
+
+class GraphicDataDE(BaseStruct, DatFileObject):
 
     name_len_debug: int                              = Retriever(uint16,                                     default=0)
     graphic_name: str                                = Retriever(str16,                                      default=0)
@@ -26,7 +28,7 @@ class GraphicDataDE(BaseStruct):
         super().__init__(struct_ver, parent, idx, initialise_defaults, **retriever_inits)
 
 
-class GraphicDataSWGB(BaseStruct):
+class GraphicDataSWGB(BaseStruct, DatFileObject):
 
     graphic_internal_name: str                       = Retriever(FixedLenStr[25],                              default=0)
     graphic_sprite_name: str                         = Retriever(FixedLenStr[25],                              default=0)
@@ -37,7 +39,7 @@ class GraphicDataSWGB(BaseStruct):
         super().__init__(struct_ver, parent, idx, initialise_defaults, **retriever_inits)
 
 
-class GraphicDataAOE1_2(BaseStruct):
+class GraphicDataAOE1_2(BaseStruct, DatFileObject):
     graphic_internal_name: str                       = Retriever(FixedLenStr[21],                              default=0)
     graphic_sprite_name: str                         = Retriever(FixedLenStr[13],                              default=0)
     graphics_data_common: list[GraphicDataCommon]    = Retriever(GraphicDataCommon,                            default=GraphicDataCommon())

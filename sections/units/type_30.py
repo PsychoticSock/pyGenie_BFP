@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, uint8, int16, float32, Bytes, int32
 
 from dat_file_locations import Dat
 
-class Type30(BaseStruct):
+class Type30(BaseStruct, DatFileObject):
     move_graphics: int                            = Retriever(int16,     default=0)
     run_graphics: int                             = Retriever(int16,     default=0)
     turn_speed: float                             = Retriever(float32,   default=0)  #Rotation speed

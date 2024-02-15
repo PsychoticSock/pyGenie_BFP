@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version, RetrieverCombiner
 from binary_file_parser.types import int8, uint8, int16, float32, Array16
 
@@ -7,7 +9,7 @@ from dat_file_locations import Dat
 from sections.units.hit_type import HitType
 
 
-class AttackingUnit(BaseStruct):
+class AttackingUnit(BaseStruct, DatFileObject):
     default_armor_1: int            = Retriever(uint8, Version(Dat.AOE1_1997.ver()), Version(Dat.AOE1DE_ORIGINAL.ver()),            default=0)
     default_armor_2: int            = Retriever(int16, Version(Dat.AOE1DE.ver()), Version(Dat.AOE1DE.ver()),                        default=0)
     default_armor_3: int            = Retriever(uint8, Version(Dat.AOE2_AOK_1999.ver()),    Version(Dat.AOE2_AOK_1999.ver()),       default=0)

@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import uint8, float32
 
 from sections.units.attacking_unit import AttackingUnit
 
 
-class Type60(BaseStruct):
+class Type60(BaseStruct, DatFileObject):
 
     attacking_type: AttackingUnit  = Retriever(AttackingUnit, default=AttackingUnit())  #, repeat=1)
 

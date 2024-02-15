@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8
 
 
-class LootingTable(BaseStruct):
+class LootingTable(BaseStruct, DatFileObject):
     stone_loot_switch: int      = Retriever(int8,       default=0)
     wood_loot_switch: int       = Retriever(int8,       default=0)
     ore_loot_switch: int        = Retriever(int8,       default=0)

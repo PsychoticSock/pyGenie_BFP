@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int8, int16, int32
 
 
-class MapUnit(BaseStruct):
+class MapUnit(BaseStruct, DatFileObject):
     unit_id: int                    = Retriever(int32,  default=0)
     host_terrain: int               = Retriever(int32,  default=0)
     group_placing: int              = Retriever(int8,   default=0)

@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int32
 
 
-class MapTerrain(BaseStruct):
+class MapTerrain(BaseStruct, DatFileObject):
     proportion: int         = Retriever(int32,  default=0)
     terrain_id: int         = Retriever(int32,  default=0)
     number_of_clumps: int   = Retriever(int32,  default=0)

@@ -7,8 +7,9 @@ from dat_file_locations import Dat
 from sections.graphics.graphic_attack_sounds import GraphicAttackSounds
 from sections.graphics.graphic_deltas import GraphicDeltas
 
+from class_for_copying import DatFileObject
 
-class GraphicDataCommon(BaseStruct):
+class GraphicDataCommon(BaseStruct, DatFileObject):
     @staticmethod
     def set_delta_count(_, instance: GraphicDataCommon):
         Retriever.set_repeat(GraphicDataCommon.deltas, instance, instance.delta_count)

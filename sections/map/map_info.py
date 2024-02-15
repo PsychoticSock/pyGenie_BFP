@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version
 from binary_file_parser.types import int32, uint32
 
 
-class MapInfo(BaseStruct):
+class MapInfo(BaseStruct, DatFileObject):
     map_id: int                         = Retriever(int32,  default=0)
     border_south_west: int              = Retriever(int32,  default=0)
     border_north_west: int              = Retriever(int32,  default=0)

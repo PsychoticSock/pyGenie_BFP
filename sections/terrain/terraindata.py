@@ -8,8 +8,9 @@ from sections.borders.borders import TerrainBorder
 from sections.terrain.terrain import Terrain
 from sections.terrain.tilesize import TileSize
 
+from class_for_copying import DatFileObject
 
-class TerrainData(BaseStruct):
+class TerrainData(BaseStruct, DatFileObject):
     def set_repeat_terrain(_, instance: Terrain):
         hardcoded_terrain_count = 0
         if instance.struct_ver > (0,):

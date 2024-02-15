@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+from class_for_copying import DatFileObject
 from binary_file_parser import Retriever, BaseStruct, Version, RetrieverCombiner
 from binary_file_parser.types import uint16, str16, FixedLenStr, Array16
 
@@ -7,7 +9,7 @@ from dat_file_locations import Dat
 from sections.effects.effect import Effect
 
 
-class EffectBundle(BaseStruct):
+class EffectBundle(BaseStruct, DatFileObject):
 
     effect_bundle_name_len_debug_aoe1de: int    = Retriever(uint16,             Version(Dat.AOE1DE.ver()),          Version(Dat.AOE1DE.ver()),         default=0)
     effect_bundle_name_aoe1de: str              = Retriever(str16,              Version(Dat.AOE1DE.ver()),          Version(Dat.AOE1DE.ver()),         default=0)
