@@ -98,17 +98,15 @@ class DatStructure(BaseStruct, DatFileObject):
 
     unit_lines: list[UnitLine]              = Retriever(Array16[UnitLine],   Version(Dat.SWGB.ver()),
                                                                                 Version(Dat.SWGB.ver()),                                    default=[])
+
     unit_headers_count: int                 = Retriever(uint32,                                                                             default=0,      on_set=[set_unit_header_count])
     unit_headers: list[UnitHeader]          = Retriever(UnitHeader, Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),    default=UnitHeader())
-    #unit_headers: list[UnitHeader]          = Retriever(Array32[UnitHeader], Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),  default=[])
+    #unit_headers: list[UnitHeader]          = Retriever(Array32[UnitHeader], Version(Dat.AOE2_AOK_1999.ver()), Version(Dat.AOE2_DE_LATEST.ver()),  default=[])  #This did not work - struct_ver didn't get set to items inside properly
 
-    #civ_count: int                          = Retriever(int16,                                                      default=0) # For testing purposes
-    #civ: Civ                                = Retriever(Civ, default=Civ(), repeat=1)                                          # For testing purposes
 
     civ_count: int                          = Retriever(uint16,                                                                             default=0,      on_set=[set_civ_count])
     civs: list[Civ]                         = Retriever(Civ,                                                                                default=Civ())
-
-    #civs: list[Civ]                         = Retriever(Array16[Civ],                                               default=[])
+    #civs: list[Civ]                         = Retriever(Array16[Civ],                                               default=[])  #This did not work - struct_ver didn't get set to items inside properly
 
     unknown_swgb_03: int                    = Retriever(int8, Version(Dat.SWGB.ver()), Version(Dat.SWGB_EXPANSION.ver()),                   default=0)
 

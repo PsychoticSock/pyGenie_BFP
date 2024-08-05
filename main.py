@@ -16,6 +16,7 @@ from sections.units.unit_data import UnitData
 from unitdatwrapper import DatUnitWrapper
 
 current_dat = Dat.AOE2_AOK_1999
+
 batch = False
 
 def compress(bytes_: bytes) -> bytes:
@@ -49,28 +50,22 @@ else:
     #cProfile.run("datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)")
         datfile = DatStructure.from_file(current_dat.decompressed_path(), strict=False)
 
-        #for x, civ in enumerate(datfile.civs):
-        #    current_datfile_capacity = len(datfile.civs[x].unit_offsets)
-        #    print(datfile.civs[0].unit_offsets)
-        #    print("Current datfile unit capacity:", current_datfile_capacity)
-#
-        #    for unit_id, value in enumerate(datfile.civs[x].unit_offsets):
-        #        if value == 0:
-        #            datfile.civs[x].unit_data.insert(unit_id, None)
-        #            print(f"length of civ {x} unit data is {len(datfile.civs[x].unit_data)})")
-
-        #    print(civ)
+        #print("unit_headers_count:", len(datfile.unit_headers))
+        #print("Unit_Lines", datfile.unit_lines)
+        #print("unit_headers:", datfile.unit_headers)
 
         for civ, data in enumerate(datfile.civs):
             test = copy.deepcopy(datfile.civs[civ].unit_data[82])
-            datfile.civs[civ].unit_data.append(test)
+            datfile.civs[civ].unit_data.insert(86, test)
+            test2 = copy.deepcopy(datfile.unit_headers[82])
+            datfile.unit_headers.insert(86, test2)
+        datfile.unit_headers_count = len(datfile.unit_headers)
 
-
-        #    castle = DatUnitWrapper(datfile, civ, 82)
+    #    castle = DatUnitWrapper(datfile, civ, 82)
             #castle.hit_points = 20000
             #castle.standing_graphic_1_id = 666
             #castle.dead_unit_id = 123
-#
+
         #    print(f"castle2 copy start for civ {civ}")
             #print(datetime.now().strftime("%H:%M:%S"))
             #castle2 = copy.deepcopy(castle)
@@ -79,6 +74,7 @@ else:
             #datfile.civs[civ].unit_data.append(castle2)
             #print(f"castle2 appended for civ {civ}")
             #print(datetime.now().strftime("%H:%M:%S"))
+
 
     #print(datfile.civs[0].unit_data[234].type_10.hit_points)
     #datfile.civs[0].unit_data[234].type_10.hit_points = 15000

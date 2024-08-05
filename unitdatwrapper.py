@@ -132,8 +132,6 @@ class DatUnitWrapper:
     def standing_graphic_0_id(self, value: int):
         self._dat.civs[self._civ_id].unit_data[self._unit_id].type_10.idle_graphic_0 = value
 
-
-
     @property
     def standing_graphic_1_id(self) -> int:
         """"""

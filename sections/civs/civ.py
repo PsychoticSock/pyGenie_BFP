@@ -16,9 +16,10 @@ class Civ(BaseStruct, DatFileObject):
         Retriever.set_repeat(Civ.resources , instance, instance.resources_count)
     @staticmethod
     def set_unit_data_repeat(_, instance: Civ):
-        if instance.struct_ver > (0,0):
+        if len(instance.unit_offsets) > 0:
             print(f"{instance.civ_name} civ has {len([x for x in instance.unit_offsets if x > 0])} units")
             Retriever.set_repeat(Civ.unit_data , instance, len([x for x in instance.unit_offsets if x > 0]))  #Original unit data length
+            print(instance.unit_offsets)
             #Retriever.set_repeat(Civ.unit_data, instance, len(instance.unit_offsets))
 
     @staticmethod
@@ -28,11 +29,26 @@ class Civ(BaseStruct, DatFileObject):
         for unit_id, unit in enumerate(instance.unit_data):
             if unit == None:
                 instance.unit_offsets.append(0)
+                #print(f"Adding 0: {instance.civ_name}, {unit_id}: {instance.unit_offsets}")
+                #print(f"removing id {unit_id}")
                 units_to_remove.append(unit_id)
             else:
                 instance.unit_offsets.append(1)
 
+            if unit is not None:
+                unit.type_10.id1 = unit_id
+                unit.type_10.id2 = unit_id
+                unit.type_10.unit_id = unit_id
+            #   if unit_id == 85:
+                #print(f"{instance.civ_name}: 82: {unit.__dict__.items()}")
+                #print(f"{instance.civ_name}: 85: {instance.unit_data[unit_id].__dict__.items()}")
+            #if unit_id ==750:
+                #print(f"{instance.civ_name}: {instance.unit_offsets}")
+                #print(f"civ: {instance.civ_name}, unit: ", unit_id, "   id1:", unit.type_10.id1,  "   id2:", unit.type_10.id2, "    value: ", unit.type_10.unit_id)
+
+        #print(f"Before {instance.civ_name}:", len(instance.unit_data))
         instance.unit_data = [ele for idx, ele in enumerate(instance.unit_data) if idx not in units_to_remove]
+        #print(f"After {instance.civ_name}:", len(instance.unit_data))
 
     @staticmethod
     def write_unit_data_repeat(_, instance: Civ):
